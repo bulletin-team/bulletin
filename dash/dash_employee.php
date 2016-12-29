@@ -10,12 +10,14 @@ while ($row = $result->fetch_assoc()) {
       <div class="job">
         <a href="#" class="jobxbtn"></a>
         <p class="jobtitle"><a href="ads.php?id=<?=$row['id'];?>"><?=htmlentities($row['title']);?></a></p>
-        <p class="joblocation"><?=htmlentities($row['location']);?></p>
 <?php
   if (is_null($row['cat_name']))
     echo '        <p class="jobcat">Uncategorized</p>'.PHP_EOL;
   else
     echo '        <p class="jobcat">'.htmlentities($row['cat_name']).'</p>'.PHP_EOL;
+?>
+        <p class="joblocation"><?=htmlentities($row['location']);?></p>
+<?php
   if (is_null($row['rating']))
     echo '        <p class="jobstars">Employer Not Rated</p>'.PHP_EOL;
   else
