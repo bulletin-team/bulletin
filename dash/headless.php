@@ -12,10 +12,14 @@ if ($result->num_rows) {
         <p class="jobtitle"><a href="ads.php?id=<?=$row['id'];?>"><?=htmlentities($row['title']);?></a></p>
         <p class="joblocation"><?=htmlentities($row['location']);?></p>
 <?php
+  if (is_null($row['cat_name']))
+    echo '        <p class="jobcat">Uncategorized</p>'.PHP_EOL;
+  else
+    echo '        <p class="jobcat">'.htmlentities($row['cat_name']).'</p>'.PHP_EOL;
   if (is_null($row['rating']))
     echo '        <p class="jobstars">Employer Not Rated</p>'.PHP_EOL;
   else
-    echo '        <p class="jobstars">'.$row['rating'].' Star Employer</p>'.PHP_EOL;
+    echo '        <p class="jobstars">'.intval($row['rating']).' Star Employer</p>'.PHP_EOL;
 ?>
         <p class="jobpay">Pays $<?=number_format($row['pay'], 2);?></p>
         <p class="jobblurb"><?=htmlentities(substr($row['description'], 0, min(strlen($row['description']), 160)));?> <a href="ads.php?id=<?=$row['id'];?>">[...]</a></p>
