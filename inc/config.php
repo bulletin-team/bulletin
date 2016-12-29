@@ -14,5 +14,6 @@ $b_config = array(
   'mail_from' => 'Bulletin <noreply@bulletinalpha.tk>',
   'mobile_base' => 'https://m.bulletinalpha.tk/',
   'moblie_host' => 'm.bulletinalpha.tk',
+  'ads_per_page' => 10,
 );
 ?>
