@@ -1,0 +1,160 @@
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('../../ttf/myriad.ttf');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(135deg, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0)),
+                    url('../../img/3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#nav {
+  height: 60px;
+  padding-top: 8px;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+  background-color: #ffffff;
+}
+#navlogo {
+  background-image: url('../../img/5.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 8%;
+  width: 200px;
+  height: 48px;
+  float: left;
+}
+#navlinks {
+  margin-right: 8%;
+  float: right;
+  margin-left: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+#navlinks #sep {
+  display: inline-block;
+  width: 0.5px;
+  height: 52px;
+  border-radius: 5px;
+  margin-right: 1em;
+  background-color: #eeeeee;
+}
+#navlinks a {
+  font-family: 'Myriad Pro';
+  font-size: 18px;
+  font-weight: normal;
+  text-decoration: none;
+  color: #000000;
+  padding: 17px 0px;
+  margin: 0px 0.5em;
+}
+#navlinks a:hover {
+  color: #fb4d00;
+  cursor: pointer;
+}
+.navblock {
+  padding: 15px 0px;
+  position: relative;
+  z-index: 1;
+}
+.subnav {
+  display: none;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0 0 0 2em;
+  list-style: none;
+}
+.navblock:hover .subnav {
+  display: block;
+}
+#content {
+  position: absolute;
+  top: 68px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  margin: auto;
+  height: calc(100% - 88px);
+  border-radius: 2px;
+  font-family: 'Myriad Pro';
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  font-family: 'Myriad Pro';
+}
+#footer p {
+  text-align: center;
+  font-size: 10pt;
+  margin: 0.33em 0;
+}
+.job p, .job h1 {
+  margin: 0;
+  text-align: center;
+}
+.job {
+  margin: 2em auto 1em auto;
+  width: 512px;
+  padding: 1em;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+  border-radius: 3px;
+}
+.jobtitle a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+.jobblurb {
+  padding: 1em;
+  margin: 1em 1em 0 1em !important;
+  background-color: #eeeeee;
+  border-radius: 3px;
+}
+.jobblurb a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+.joblocation::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url('../img/location.svg');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-right: 3px;
+}
+.jobxbtn {
+  display: block;
+  width: 16px;
+  height: 16px;
+  float: right;
+  background-image: url('../img/x_hover2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.jobxbtn:hover {
+  background-image: url('../img/x_hover.png');
+  cursor: pointer;
+}

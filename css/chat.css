@@ -1,0 +1,82 @@
+.chexp {
+  bottom: 0px !important;
+}
+.chshr {
+  bottom: -232px !important;
+}
+.chwin {
+  z-index: 2;
+  position: fixed;
+  right: 0px;
+  height: 256px;
+  width: 400px;
+  border: #aaaaaa 1px solid;
+  border-left: #fb4d00 1px solid;
+  border-radius: 7px 0px 0px 0px;
+  background-color: #ffffff;
+  font-family: 'Myriad Pro';
+  font-size: 11pt;
+}
+.chhead {
+  height: calc(24px - 0.25em);
+  position: absolute;
+  background-color: #fb4d00;
+  top: 0px;
+  left: 0px;
+  width: calc(100% - 20px);
+  padding: 0.25em 10px 0px 10px;
+  border-radius: 4px 0px 0px 0px;
+  font-weight: bold;
+  font-size: 12pt;
+  cursor: pointer;
+}
+.chlist {
+  position: absolute;
+  top: 24px;
+  left: 0px;
+  width: calc(100% - 10px);
+  height: 205px;
+  list-style: none;
+  padding: 0px 5px 0px 5px;
+  margin: 0px;
+  border-style: solid;
+  border-width: 1px 0px 1px 0px;
+  border-color: #aaaaaa;
+}
+.chlist .chnick {
+  margin-right: .2em;
+  font-weight: bold;
+}
+.chlist li.chfailed {
+  color: #777777;
+  cursor: pointer;
+}
+.chinput {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  width: calc(100% - 8px);
+}
+.chshrbtn {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  right: 24px;
+  cursor: pointer;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AgJBjgR7kpV0gAAAB1JREFUOMtjYBgFwwAwIrH/k6OXiVIXMI1GwnAAAErlAQYUzSSWAAAAAElFTkSuQmCC');
+  background-position: center;
+}
+.chxbtn {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AgJBwAR+BeDHgAAAAh0RVh0Q29tbWVudAD2zJa/AAAAUElEQVQ4y2NgGGjAiMT+j0OcAZ8aJiIU4hPDaQC6hv/EeAGvQlz6GIl1Ki5LGUkIA6zqmagZjVTxAkWB+B+PQpxyTEQ6FVdg4zSAkUixQQAACvINEiubgxcAAAAASUVORK5CYII=');
+  background-position: center;
+}
+.chshrbtn:hover, .chxbtn:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}

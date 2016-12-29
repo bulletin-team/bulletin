@@ -1,0 +1,140 @@
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('../ttf/myriad.ttf');
+}
+body {
+  margin: 0px;
+}
+#head {
+  width: 100%;
+  height: 110px;
+  border-style: none none solid none;
+  border-width: 1px;
+  border-color: #dddddd;
+}
+#head .logolink {
+  display: block;
+  margin: 0px auto 0px auto;
+  width: 334px;
+  height: 100%;
+  background-size: contain;
+  background-image: url('../img/5.png');
+  background-repeat: no-repeat;
+  background-position: center, center;
+}
+.box {
+  margin: 1em auto 1em auto;
+  display: table;
+  width: 450px;
+}
+.fullrow, .helper {
+  margin: 15px -15px 15px -15px;
+  width: 100%;
+  display: block;
+}
+.halfrowl {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+  float: left;
+}
+.halfrowr {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+}
+.box, .box input, .box select {
+  font-family: 'Myriad Pro';
+  font-size: 16pt;
+}
+.box select {
+  padding: 5px;
+  background-color: #ffffff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dddddd;
+  border-radius: 5px;
+  color: #000000;
+}
+.box select::invalid {
+  color: #aaaaaa;
+}
+.iama {
+  margin-right: 0.25em;
+}
+.box label {
+  font-size: 13pt;
+}
+input[type=text], input[type=password] {
+  width: calc(100% - 24px);
+  padding: 6px 12px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dddddd;
+  border-radius: 5px;
+}
+.err input {
+  border-color: #aa0000;
+}
+input[type=submit] {
+  margin-left: auto;
+  background-color: #fb4d00;
+  padding: 5px 50px 5px 50px;
+  border-style: none;
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 14pt;
+  font-weight: bold;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #fb7700;
+}
+.box form {
+  margin-bottom: 2em;
+}
+.box p {
+  font-size: 12pt;
+  width: 100%;
+  text-align: center;
+}
+.box p a, .back a {
+  text-decoration: none;
+  color: #fb4d00;
+}
+.helper a:hover, .back a:hover {
+  color: #fb7700;
+}
+.ehelper {
+  color: #aa0000;
+  font-weight: bold;
+}
+.hr {
+  width: 450px;
+  height: 1px;
+  margin: auto;
+  background-color: #dddddd;
+}
+.back {
+  margin-top: 2em;
+  font-family: 'Myriad Pro';
+  font-weight: 8pt;
+  text-align: center;
+  color: #aaaaaa;
+}
+.copy {
+  color: #dddddd;
+  position: fixed;
+  z-index: -1;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  text-align: center;
+  font-size: x-small;
+  font-family: 'Myriad Pro';
+}
+#inpext, #inparea, #inpphone2, #inpphone3 {
+  width: initial;
+  display: inline;
+}
