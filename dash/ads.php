@@ -30,7 +30,7 @@ else
 ?>
             <p id="ename"><?=htmlentities($row['name']);?></p>
 <?php
-if (is_null($row['rating'))
+if (is_null($row['rating']))
   echo '            <p id="erating">Employer Not Rated</p>'.PHP_EOL;
 else
   echo '            <p id="erating">'.intval($row['rating']).' Star Employer</p>'.PHP_EOL;
