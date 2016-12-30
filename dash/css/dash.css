@@ -159,18 +159,60 @@ body {
   cursor: pointer;
 }
 #fulljob {
-  margin: 2em auto 2em auto;
+  margin: 2em auto 1em auto;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   width: 50%;
-  height: 90%;
+  height: calc(100% - 5em);
   padding: 1em;
   box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
   border-radius: 3px;
   background-color: #ffffff;
-  overflow-y: hidden;
+  overflow-y: auto;
   
+}
+#fjheader {
+  text-align: center;
+  margin-bottom: 1em;
+}
+#fjheader p, #fjheader h3 {
+  margin: 0;
+}
+#fjbody {
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  text-align: center;
+}
+#fjfooter {
+  margin-top: 1em;
+}
+#fjfooter p, #fjfooter h4 {
+  margin: 0;
+}
+#fjfleft {
+  float: left;
+  margin-right: 1em;
+}
+#fjfleft img {
+  margin-bottom: 1em;
+  width: 192px;
+  height: 192px;
+}
+#fjfleft p {
+  margin: 0;
+  font-size: 16pt;
+  text-align: center;
+}
+#fjfright {
+  text-align: center;
+}
+#fulljob a {
+  text-decoration: none;
+  color: #fb4d00;
+}
+#fulljob a:hover {
+  color: #fb7700;
 }

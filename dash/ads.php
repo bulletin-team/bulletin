@@ -20,7 +20,6 @@ $row = $result->fetch_assoc();
           <p><?=htmlentities($row['description']);?></p>
         </div>
         <div id="fjfooter">
-          <h4>Respond to this Ad</h4>
           <div id="fjfleft">
 <?php
 if (is_null($row['picture']))
@@ -37,6 +36,7 @@ else
 ?>
           </div>
           <div id="fjfright">
+            <h4>Respond to this Ad</h4>
             <p id="eemail"><a href="mailto:<?=htmlentities($row['email']);?>"><?=htmlentities($row['email']);?></a></p>
 <?php
 $phonelink = '+'.preg_replace('/[^0-9]/', '', $row['phone']);
