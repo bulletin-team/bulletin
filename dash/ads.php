@@ -41,7 +41,7 @@ else
 <?php
 $phonelink = '+'.preg_replace('/[^0-9]/g', '', $row['phone']);
 ?>
-            <p id="ephone"><a href="tel:<?=$phonelink;?>"><?=htmlentities($row['phone'];?></a></p>
+            <p id="ephone"><a href="tel:<?=$phonelink;?>"><?=htmlentities($row['phone']);?></a></p>
             <p id="echat"><a href="#" onclick="bullechat.gui.create('<?=htmlentities($row['email'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
           </div>
         </div>
