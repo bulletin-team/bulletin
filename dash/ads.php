@@ -37,7 +37,6 @@ else
           </div>
           <div id="fjfright">
             <p id="ebio"><?=(is_null($row['bio']) ? '<em>No bio included in profile.</em>' : htmlentities($row['bio']));?></p>
-            <div class="sep"></div>
             <h4>Respond to this Ad</h4>
             <p id="eemail"><a href="mailto:<?=htmlentities($row['email']);?>"><?=htmlentities($row['email']);?></a></p>
 <?php

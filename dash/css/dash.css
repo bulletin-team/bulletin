@@ -216,9 +216,7 @@ body {
 #fulljob a:hover {
   color: #fb7700;
 }
-.sep {
-  display: block;
-  width: 100%;
-  height: 1px;
-  background-color: #eeeeee;
+#fulljob #ebio {
+  margin: 1em auto;
+  padding-top: 1em;
 }
