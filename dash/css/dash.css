@@ -134,7 +134,7 @@ body {
   text-decoration: none;
   font-weight: bold;
 }
-.joblocation::before {
+.joblocation::before, #fjhdetails::before {
   content: '';
   display: inline-block;
   width: 12px;
