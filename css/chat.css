@@ -11,7 +11,7 @@
   height: 256px;
   width: 400px;
   border: #aaaaaa 1px solid;
-  border-left: #fb4d00 1px solid;
+  border-left: #fb7700 1px solid;
   border-radius: 7px 0px 0px 0px;
   background-color: #ffffff;
   font-family: 'Myriad Pro';
@@ -20,7 +20,7 @@
 .chhead {
   height: calc(24px - 0.25em);
   position: absolute;
-  background-color: #fb4d00;
+  background-color: #fb7700;
   top: 0px;
   left: 0px;
   width: calc(100% - 20px);
