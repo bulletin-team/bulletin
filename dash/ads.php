@@ -13,8 +13,8 @@ $row = $result->fetch_assoc();
       <div id="fulljob">
         <div id="fjheader">
           <h3 id="fjhtitle"><?=htmlentities($row['title']);?></h3>
-          <p id="fjhpay">Pays <?=number_format($row['pay'], 2);?></p>
-          <p id="fjhdetails"><?=date('g:i a', intval($row['time'])).' on '.date('M j, Y', intval($row['time']));?> at <?=htmlentities($row['location']);?></p>
+          <p id="fjhpay">Pays $<?=number_format($row['pay'], 2);?></p>
+          <p id="fjhdetails"><?=htmlentities($row['location']);?> at <?=date('g:i a', intval($row['time'])).' on '.date('M j, Y', intval($row['time']));?></p>
         </div>
         <div id="fjbody">
           <p><?=htmlentities($row['description']);?></p>
@@ -39,7 +39,7 @@ else
           <div id="fjfright">
             <p id="eemail"><a href="mailto:<?=htmlentities($row['email']);?>"><?=htmlentities($row['email']);?></a></p>
 <?php
-$phonelink = '+'.preg_replace('/[^0-9]/g', '', $row['phone']);
+$phonelink = '+'.preg_replace('/[^0-9]/', '', $row['phone']);
 ?>
             <p id="ephone"><a href="tel:<?=$phonelink;?>"><?=htmlentities($row['phone']);?></a></p>
             <p id="echat"><a href="#" onclick="bullechat.gui.create('<?=htmlentities($row['email'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
