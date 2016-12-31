@@ -2,7 +2,6 @@
 define('HEIRARCHY', 1);
 
 require('dash_common.php');
-if ($adid < 1) fatal('No ad ID has been provided. You must have reached this page in error.');
 $title = 'Account Settings / Bulletin';
 require('header.php');
 //if (!empty($_POST[''])) {
@@ -39,6 +38,6 @@ require('header.php');
         </div>
       </div>
 <?php
-$result->free();
+if (!empty($result)) $result->free();
 require('footer.php');
 ?>
