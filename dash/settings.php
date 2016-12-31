@@ -8,10 +8,10 @@ require('header.php');
 
 //}
 ?>
-      <div id="fulljob">
+      <div id="fulljob" class="fjsettings">
         <div id="fjheader">
           <h3 id="fjhtitle">Account Settings</h3>
-          <p id="fjhdetails">Adjusting for <?=htmlentities($b_user['email']);?></p>
+          <p id="fjhdesc">Adjusting for <?=htmlentities($b_user['email']);?></p>
         </div>
         <div id="fjbody">
           <h4>Current Password</h4>
