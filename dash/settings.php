@@ -29,8 +29,8 @@ require('header.php');
             <h4>Change Account Type</h4>
             <p>
               <select id="inpnt" name="newtype">
-                <option<? if ($b_user['type'] == 'EMPLOYEE') echo ' selected="selected"'; ?> value="0">Job Seeker</option>
-                <option<? if ($b_user['type'] == 'EMPLOYER') echo ' selected="selected"'; ?> value="1">Job Provider</option>
+                <option<?php if ($b_user['type'] == 'EMPLOYEE') echo ' selected="selected"'; ?> value="0">Job Seeker</option>
+                <option<?php if ($b_user['type'] == 'EMPLOYER') echo ' selected="selected"'; ?> value="1">Job Provider</option>
               </select>
             </p>
             <p><input id="inpct" type="submit" name="changetype" value="Change Account Type" /></p>
