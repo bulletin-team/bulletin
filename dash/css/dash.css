@@ -236,7 +236,7 @@ body {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-family: 'Myriad Pro';
-  font-size: 16pt;
+  font-size: 12pt;
 }
 .fjsettings input[type=text], .fjsettings input[type=password] {
   width: 192px;
@@ -257,12 +257,10 @@ body {
 }
 .fjsettings input[type=submit] {
   background-color: #fb4d00;
-  padding: 5px 50px;
+  padding: 5px 10px 3px;
   border-style: none;
-  border-radius: 15px;
+  border-radius: 10px;
   color: #ffffff;
-  font-size: 14pt;
-  font-weight: bold;
   cursor: pointer;
 }
 .fjsettings input[type=submit]:hover {
