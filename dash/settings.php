@@ -4,9 +4,15 @@ define('HEIRARCHY', 1);
 require('dash_common.php');
 $title = 'Account Settings / Bulletin';
 require('header.php');
-//if (!empty($_POST[''])) {
-
-//}
+if (!empty($_POST['changepass'])) {
+  if ($b_user['password'] != hash('sha512', $_POST['oldpass'])) dash_fatal('The password you entered does not match your current password.');
+  if ($_POST['newpass1'] != $_POST['newpass2']) dash_fatal('Your new passwords do not match.');
+  $db->query('UPDATE users SET password = \''.hash('sha512', $_POST['newpass1']).'\' WHERE id = '.$b_user['id']) or dash_fatal($db->error);
+  if ($db->affected_rows < 1) dash_fatal('No user with your ID is in the database');
+  dash_fatal('Password changed successfully.');
+} else if (!empty($_POST['changetype'])) {
+  if ($b_user['password'] != hash('sha512', $_POST['curpass'])) dash_fatal('The password you entered does not match your current password.');
+}
 ?>
       <div id="fulljob" class="fjsettings">
         <div id="fjheader">

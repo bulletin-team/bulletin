@@ -2,3 +2,7 @@
 *.swp
 .*.swp
 *~
+
+# sensitive config file
+# contains database passwords and site-specific options
+inc/config.php
