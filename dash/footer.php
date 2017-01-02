@@ -1,5 +1,6 @@
 <?php
 if (!defined('HEIRARCHY')) die;
+global $db;
 $db->close();
 ?>
     </div>

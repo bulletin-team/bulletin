@@ -1,11 +1,11 @@
 <?php
 $b_config = array(
-  'base_url' => 'https://www.bulletinalpha.tk/',
+  'base_url' => 'http://www.bulletin.com/',
   'c_name' => 'bulletin',
   'c_expire' => 31536000,
-  'c_dom' => '.bulletinalpha.tk',
+  'c_dom' => '.bulletin.com',
   'c_path' => '/',
-  'c_sec' => true,
+  'c_sec' => false,
   'c_http' => true,
   'db_host' => 'localhost',
   'db_name' => 'bulletin',

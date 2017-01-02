@@ -209,11 +209,11 @@ body {
 #fjfright {
   text-align: center;
 }
-#fulljob a {
+#fulljob a, .errbox a {
   text-decoration: none;
   color: #fb4d00;
 }
-#fulljob a:hover {
+#fulljob a:hover, .errbox a:hover {
   color: #fb7700;
 }
 #fulljob #ebio {
@@ -222,7 +222,7 @@ body {
 }
 #fulljob.fjsettings {
   margin: 2em auto 0 auto;
-  height: 500px;
+  height: 455px;
   border-radius: 5px;
 }
 .fjsettings #fjbody {
@@ -234,7 +234,7 @@ body {
 .fjsettings #fjbody p {
   margin: 0;
 }
-.fjsettings form {
+.fjsettings .pseudoform {
   margin-bottom: 1em;
 }
 .fjsettings input, .fjsettings select {
@@ -270,4 +270,18 @@ body {
 }
 .fjsettings input[type=submit]:hover {
   background-color: #fb7700;
+}
+.errbox {
+  width: 512px;
+  margin: 2em auto;
+  background-color: #ffffff;
+  padding: 1em;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+  border-radius: 5px;
+  text-align: center;
+  word-break: break-all;
+}
+#setchgbtn {
+  margin: 0;
+  text-align: center;
 }
