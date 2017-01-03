@@ -6,6 +6,16 @@ function dash_fatal ($msg = null, $link = null, $label = null) {
   require('footer.php');
   die;
 }
+function draw_noads () {
+?>
+      <div class="job">
+        <a href="#" class="jobxbtn"></a>
+        <p class="jobtitle"><a href="post.php">Post an Ad!</a></p>
+        <p class="jobpay">Costs $5.00</p>
+        <p class="jobblurb">You haven't posted any ads yet! It's a quick and easy way to get connected to the workers you need.<br /><a href="post.php">Post an ad!</a></p>
+      </div>
+<?php
+}
 function draw_ad ($row) {
 ?>
       <div class="job">
