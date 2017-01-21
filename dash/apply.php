@@ -4,13 +4,23 @@ define('HEIRARCHY', 1);
 require('dash_common.php');
 $adid = intval($_GET['id']);
 if ($adid < 1) fatal('No ad ID has been provided. You must have reached this page in error.');
-$title = 'Ad / Bulletin';
+$title = 'Apply / Bulletin';
 require('header.php');
-$result = $db->query('SELECT ads.id, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, users.email, users.phone, users.picture, users.bio, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' LIMIT 1') or dash_fatal($db->error);
+if (!empty($_POST['apply'])) {
+  $result = $db->query('SELECT id FROM responses WHERE adid = '.$adid.' AND uid = '.$b_user['id'].' LIMIT 1') or dash_fatal($db->error);
+  if ($result->num_rows > 0) {
+    $result->free();
+    dash_fatal('You have already applied to this ad!', $b_config['base_url'].'dash/');
+  }
+  $db->query('INSERT INTO responses (adid, uid, comment) VALUES ('.$adid.', '.$b_user['id'].', \''.$db->escape_string($_POST['comments']).'\')') or dash_fatal($db->error);
+  dash_fatal('Your application has been submitted.', $b_config['base_url'].'dash/');
+}
+
+$result = $db->query('SELECT ads.id, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' LIMIT 1') or dash_fatal($db->error);
 if ($result->num_rows < 1) dash_fatal('No ad with this ID has been found.');
 $row = $result->fetch_assoc();
 ?>
-      <div id="fulljob">
+      <div id="fulljob" class="fjsettings">
         <div id="fjheader">
           <h3 id="fjhtitle"><?=htmlentities($row['title']);?></h3>
           <p id="fjhpay">Pays $<?=number_format($row['pay'], 2);?></p>
@@ -36,16 +46,11 @@ else
 ?>
           </div>
           <div id="fjfright">
-            <p id="ebio"><?=(is_null($row['bio']) ? '<em>No bio included in profile.</em>' : htmlentities($row['bio']));?></p>
-            <h4>Respond to this Ad</h4>
-            <p id="eapply"><a href="apply.php?id=<?=intval($row['id']);?>">Apply Now</a></p>
-            <h4>Contact the Employer</h4>
-            <p id="eemail"><a href="mailto:<?=htmlentities($row['email']);?>"><?=htmlentities($row['email']);?></a></p>
-<?php
-$phonelink = '+'.preg_replace('/[^0-9]/', '', $row['phone']);
-?>
-            <p id="ephone"><a href="tel:<?=$phonelink;?>"><?=htmlentities($row['phone']);?></a></p>
-            <p id="echat"><a href="#" onclick="bullechat.gui.create('<?=htmlentities($row['email'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
+            <form id="cform" action="<?=htmlentities($_SERVER['REQUEST_URI']);?>" method="post">
+              <h4>Comments (Optional)</h4>
+              <p><textarea name="comments"></textarea></p>
+              <p><input id="inpapply" type="submit" name="apply" value="Apply to Ad" /></p>
+            </form>
           </div>
         </div>
       </div>

@@ -6,10 +6,10 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(135deg, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0)),
+  background-image: linear-gradient(to bottom right, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0)),
                     url('../img/0.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-attachment: fixed;
 }
 #nav {
@@ -189,7 +189,10 @@ body {
 #fjfooter {
   margin-top: 1em;
 }
-#fjfooter p, #fjfooter h4 {
+#fjfooter h4 {
+  margin: 1em 0 0 0;
+}
+#fjfooter p {
   margin: 0;
 }
 #fjfleft {
@@ -212,12 +215,13 @@ body {
 #fulljob a, .errbox a {
   text-decoration: none;
   color: #fb4d00;
+  cursor: pointer;
 }
 #fulljob a:hover, .errbox a:hover {
   color: #fb7700;
 }
 #fulljob #ebio {
-  margin: 1em auto;
+  margin: 1em auto 0em;
   padding-top: 1em;
 }
 #fulljob.fjsettings {
@@ -270,6 +274,18 @@ body {
 }
 .fjsettings input[type=submit]:hover {
   background-color: #fb7700;
+}
+.fjsettings textarea {
+  margin: 0.5em auto;
+  width: 500px;
+  height: 150px;
+  resize: none;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+#cform input[type=submit] {
+  margin: 0 auto;
 }
 .errbox {
   width: 512px;

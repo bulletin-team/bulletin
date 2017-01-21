@@ -28,7 +28,7 @@ if (!empty($_POST['oldpass'])) {
           <h3 id="fjhtitle">Account Settings</h3>
           <p id="fjhdesc">Adjusting for <?=htmlentities($b_user['email']);?></p>
         </div>
-        <form action="/dash/settings.php" method="post">
+        <form action="<?=$_SERVER['REQUEST_URI'];?>" method="post">
           <div id="fjbody">
             <h4>Current Password</h4>
             <p>Your current password is needed to change your account settings.</p>
