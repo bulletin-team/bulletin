@@ -6,14 +6,14 @@ $adid = intval($_GET['id']);
 if ($adid < 1) fatal('No ad ID has been provided. You must have reached this page in error.');
 $title = 'Ad / Bulletin';
 require('header.php');
-$result = $db->query('SELECT ads.id, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, users.email, users.phone, users.picture, users.bio, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' LIMIT 1') or dash_fatal($db->error);
+$result = $db->query('SELECT ads.id, ads.uid, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, users.email, users.phone, users.picture, users.bio, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' LIMIT 1') or dash_fatal($db->error);
 if ($result->num_rows < 1) dash_fatal('No ad with this ID has been found.');
 $row = $result->fetch_assoc();
 $result->free();
 ?>
       <div id="fulljob">
         <div id="fjheader">
-          <h3 id="fjhtitle"><?=htmlentities($row['title']);?></h3>
+          <h3 id="fjhtitle"><a href="ads.php?id=<?=$row['id'];?>"><?=htmlentities($row['title']);?></a></h3>
           <p id="fjhpay">Pays $<?=number_format($row['pay'], 2);?></p>
           <p id="fjhdetails"><?=htmlentities($row['location']);?> at <?=date('g:i a', intval($row['time'])).' on '.date('M j, Y', intval($row['time']));?></p>
         </div>
@@ -28,7 +28,7 @@ if (is_null($row['picture']))
 else
   echo '            <img id="propic" src="uimg/'.intval($row['picture']).'.png" alt="Profile Picture" />'.PHP_EOL;
 ?>
-            <p id="ename"><?=htmlentities($row['name']);?></p>
+            <p id="ename"><a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
             <p id="erating"><?=rating_format($row['rating']);?></p>
           </div>
           <div id="fjfright">

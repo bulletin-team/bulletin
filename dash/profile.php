@@ -16,7 +16,7 @@ if ($public) {
 ?>
       <div id="profile" class="public">
         <div id="proheader">
-          <h3 id="protitle"><?=htmlentities($user['name']);?></h3>
+          <h3 id="protitle"><a href="<?=$_SERVER['REQUEST_URI'];?>"><?=htmlentities($user['name']);?></a></h3>
           <p id="prostars"><?=rating_format($user['rating'], typestr($user['type']));?></p>
         </div>
         <div id="proleft">
@@ -46,6 +46,9 @@ $phonelink = '+'.preg_replace('/[^0-9]/', '', $user['phone']);
             <h4>Address</h4>
             <p><?=(is_null($user['address']) ? '<em>No address specified.</em>' : htmlentities($user['address']));?></p>
             <p>Zipcode: <?=htmlentities($user['zipcode']);?></p>
+            <br />
+            <h4>Chat</h4>
+            <p><a href="#" onclick="bullechat.gui.create('<?=htmlentities($user['email'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
           </div>
         </div>
       </div>
@@ -84,7 +87,7 @@ $phonelink = '+'.preg_replace('/[^0-9]/', '', $user['phone']);
 ?>
       <div id="profile" class="private">
         <div id="proheader">
-          <h3 id="protitle"><?=htmlentities($user['name']);?></h3>
+          <h3 id="protitle"><a href="<?=$_SERVER['REQUEST_URI'];?>"><?=htmlentities($user['name']);?></a></h3>
           <p id="prostars"><?=rating_format($user['rating'], typestr($user['type']));?></p>
         </div>
         <form action="<?=$_SERVER['REQUEST_URI'];?>" method="post" enctype="multipart/form-data">

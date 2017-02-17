@@ -9,15 +9,15 @@ $db = new bdb();
     <meta charset="UTF-8" />
     <meta name="description" content="Community, at your fingertips." />
     <link rel="stylesheet" type="text/css" href="css/dash.css" />
-    <link rel="stylesheet" type="text/css" href="../css/chat.css" />
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/dash.js"></script>
-    <script type="text/javascript" src="../js/auth.php"></script>
-    <script type="text/javascript" src="../js/chat.js"></script>
  <?php
 if (!empty($extra_head)) echo $extra_head;
 ?>
+    <link rel="stylesheet" type="text/css" href="../css/chat.css" />
+    <script type="text/javascript" src="../js/auth.php"></script>
+    <script type="text/javascript" src="../js/chat.js"></script>
  </head>
   <body>
     <div id="nav">

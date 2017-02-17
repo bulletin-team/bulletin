@@ -18,13 +18,13 @@
 #profile p, #profile h3, #profile h4 {
   margin: 0;
 }
-input[type=text], input[type=password] {
+#profile input[type=text], #profile input[type=password] {
   width: 248px;
   padding: 6px 12px;
   border: 1px solid #dddddd;
   border-radius: 5px;
 }
-input[type=submit], input[type=button], button {
+#profile input[type=submit], #profile input[type=button], #profile button {
   background-color: #fb4d00;
   padding: 5px 10px 3px;
   border-style: none;
@@ -32,10 +32,10 @@ input[type=submit], input[type=button], button {
   color: #ffffff;
   cursor: pointer;
 }
-input[type=submit]:hover, input[type=button]:hover, button:hover {
+#profile input[type=submit]:hover, #profile input[type=button]:hover, #profile button:hover {
   background-color: #fb7700;
 }
-textarea {
+#profile textarea {
   margin: 0.25em auto;
   width: 450px;
   height: 150px;
@@ -57,6 +57,9 @@ textarea {
 #propic {
   margin: 0.5em auto;
   cursor: pointer;
+}
+.public #propic {
+  cursor: default;
 }
 #propic img {
   width: 192px;
@@ -83,11 +86,11 @@ textarea {
 .public #probody {
   margin: 1em 0;
 }
-a {
+#profile a {
   text-decoration: none;
   color: #fb4d00;
   cursor: pointer;
 }
-a:hover {
+#profile a:hover {
   color: #fb7700;
 }

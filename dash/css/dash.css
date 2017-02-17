@@ -181,6 +181,14 @@ body {
 #fjheader p, #fjheader h3 {
   margin: 0;
 }
+h3 a, h4 a {
+  color: #000000 !important;
+  text-decoration: none;
+}
+h3 a:hover, h4 a:hover {
+  color: #000000 !important;
+  text-decoration: none;
+}
 #fjbody {
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
@@ -197,17 +205,21 @@ body {
 }
 #fjfleft {
   float: left;
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 #fjfleft img {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   width: 192px;
   height: 192px;
 }
 #fjfleft p {
   margin: 0;
-  font-size: 16pt;
+  font-size: 14pt;
   text-align: center;
+}
+#ename a, #ename a:hover {
+  color: #000000 !important;
+  font-weight: bold;
 }
 #fjfright {
   text-align: center;
