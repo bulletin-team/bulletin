@@ -1,0 +1,93 @@
+.hidden {
+  display: none;
+}
+#profile {
+  width: 800px;
+  margin: 2em auto;
+  background-color: #ffffff;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+}
+#profile input {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+  font-family: 'Myriad Pro';
+  font-size: 12pt;
+}
+#profile p, #profile h3, #profile h4 {
+  margin: 0;
+}
+input[type=text], input[type=password] {
+  width: 248px;
+  padding: 6px 12px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+input[type=submit], input[type=button], button {
+  background-color: #fb4d00;
+  padding: 5px 10px 3px;
+  border-style: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
+input[type=submit]:hover, input[type=button]:hover, button:hover {
+  background-color: #fb7700;
+}
+textarea {
+  margin: 0.25em auto;
+  width: 450px;
+  height: 150px;
+  resize: none;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+#proheader {
+  text-align: center;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #eeeeee;
+}
+#proleft {
+  float: left;
+  text-align: center;
+}
+#propic {
+  margin: 0.5em auto;
+  cursor: pointer;
+}
+#propic img {
+  width: 192px;
+  height: 192px;
+}
+#hoverupload {
+  position: relative;
+  top: -53px;
+  text-align: center;
+  width: 192px;
+  height: 20px;
+  background-color: rgba(251,77,0,0.4);
+  font-size: 20px;
+  padding: 14px 0;
+  display: none;
+}
+#propic:hover #hoverupload {
+  display: block;
+}
+#proright {
+  margin-left: calc(192px + 3em);
+  margin-bottom: 1em;
+}
+.public #probody {
+  margin: 1em 0;
+}
+a {
+  text-decoration: none;
+  color: #fb4d00;
+  cursor: pointer;
+}
+a:hover {
+  color: #fb7700;
+}

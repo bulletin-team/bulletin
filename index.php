@@ -60,7 +60,7 @@ require('inc/common.php');
                 <p>Post an ad and review your student applicants. Find the worker that's right for you to help you get some work done.</p>
               </div>
               <div class="bubble mbubble">
-                <p class="bubbleflash">$5/Ad</p>
+                <p class="bubbleflash">FREE</p>
               </div>
               <div class="bubble rbubble">
                 <p class="bubblehead">Save Some Money</p>

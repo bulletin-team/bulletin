@@ -19,6 +19,7 @@ if (!empty($_POST['apply'])) {
 $result = $db->query('SELECT ads.id, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' LIMIT 1') or dash_fatal($db->error);
 if ($result->num_rows < 1) dash_fatal('No ad with this ID has been found.');
 $row = $result->fetch_assoc();
+$result->free();
 ?>
       <div id="fulljob" class="fjsettings">
         <div id="fjheader">
@@ -38,12 +39,7 @@ else
   echo '            <img id="propic" src="uimg/'.intval($row['picture']).'.png" alt="Profile Picture" />'.PHP_EOL;
 ?>
             <p id="ename"><?=htmlentities($row['name']);?></p>
-<?php
-if (is_null($row['rating']))
-  echo '            <p id="erating">Employer Not Rated</p>'.PHP_EOL;
-else
-  echo '            <p id="erating">'.intval($row['rating']).' Star Employer</p>'.PHP_EOL;
-?>
+            <p id="erating"><?=rating_format($row['rating']);?></p>
           </div>
           <div id="fjfright">
             <form id="cform" action="<?=htmlentities($_SERVER['REQUEST_URI']);?>" method="post">
@@ -55,6 +51,5 @@ else
         </div>
       </div>
 <?php
-$result->free();
 require('footer.php');
 ?>

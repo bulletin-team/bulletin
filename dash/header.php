@@ -15,7 +15,10 @@ $db = new bdb();
     <script type="text/javascript" src="js/dash.js"></script>
     <script type="text/javascript" src="../js/auth.php"></script>
     <script type="text/javascript" src="../js/chat.js"></script>
-  </head>
+ <?php
+if (!empty($extra_head)) echo $extra_head;
+?>
+ </head>
   <body>
     <div id="nav">
       <a id="navhome" href="<?=$b_config['base_url'];?>">

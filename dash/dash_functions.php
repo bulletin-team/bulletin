@@ -6,6 +6,20 @@ function dash_fatal ($msg = null, $link = null, $label = null) {
   require('footer.php');
   die;
 }
+function typestr ($type) {
+  switch ($type) {
+    case 'EMPLOYER':
+      return 'Employer';
+    case 'EMPLOYEE':
+      return 'Employee';
+    default:
+      return 'Team Member';
+  }
+}
+function rating_format ($rating = null, $typestr = 'Employer') {
+  if (is_null($rating)) return $typestr.' Not Rated';
+  return number_format($rating, 1).' Star '.$typestr;
+}
 function draw_noads () {
 ?>
       <div class="job">
@@ -32,7 +46,7 @@ function draw_ad ($row) {
   if (is_null($row['rating']))
     echo '        <p class="jobstars">Employer Not Rated</p>'.PHP_EOL;
   else
-    echo '        <p class="jobstars">'.intval($row['rating']).' Star Employer</p>'.PHP_EOL;
+    echo '        <p class="jobstars">'.$row['rating'].' Star Employer</p>'.PHP_EOL;
 ?>
         <p class="jobpay">Pays $<?=number_format($row['pay'], 2);?></p>
         <p class="jobblurb"><?=htmlentities(substr($row['description'], 0, min(strlen($row['description']), 160)));?> <a href="ads.php?id=<?=$row['id'];?>">[...]</a></p>
