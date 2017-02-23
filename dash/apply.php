@@ -12,7 +12,9 @@ if (!empty($_POST['apply'])) {
     $result->free();
     dash_fatal('You have already applied to this ad!', $b_config['base_url'].'dash/');
   }
+  $result->free();
   $db->query('INSERT INTO responses (adid, uid, comment) VALUES ('.$adid.', '.$b_user['id'].', \''.$db->escape_string($_POST['comments']).'\')') or dash_fatal($db->error);
+  app_trigger($db->insert_id);
   dash_fatal('Your application has been submitted.', $b_config['base_url'].'dash/');
 }
 

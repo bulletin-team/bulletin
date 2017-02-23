@@ -12,8 +12,7 @@
     </div>
     <div style="width: 450px; display: table; margin: 1em auto;">
       <div style="font-family: sans-serif; font-size: 12pt; text-align: center; margin: 15px -15px; width: 100%; display: block;">
-        <p style="width: 100%;">Congratulations on creating your Bulletin account! We hope we can help you to find as many useful work connections as possible.</p>
-        <p style="width: 100%;">To activate your account, <a style="color: #fb4d00;" href="[config:base_url]activate.php?[tpl:activation_vars]">click here</a>.</p>
+        <p style="width: 100%;">Your Ad, <a style="color: #fb4d00;" href="[config:base_url]dash/review.php?id=[tpl:rid]">[tpl:adname]</a>, has just received a response. The applicant is named [tpl:seekername] and [tpl:seekerrating]. To get in touch, you can check out more of their profile, you can email them at <a style="color: #fb4d00;" href="mailto:[tpl:seekereml]">[tpl:seekereml]</a>, or check out more of their profile <a style="color: #fb4d00;" href="[config:base_url]dash/profile.php?id=[tpl:seekerid]">here</a>.</p>
       </div>
     </div>
     <div style="width: 450px; height: 1px; margin: auto; background: #dddddd;"></div>

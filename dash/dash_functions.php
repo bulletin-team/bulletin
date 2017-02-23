@@ -54,4 +54,26 @@ function draw_ad ($row) {
       </div>
 <?php
 }
+
+// triggers
+function app_trigger ($responseid) {
+  global $db;  
+
+  $result = $db->query('SELECT responses.id, responses.uid AS seeker, responses.adid, responses.comment, ads.title, users.name, users.email FROM responses INNER JOIN ads ON responses.adid = ads.id INNER JOIN users ON ads.uid = users.id WHERE responses.id = '.$responseid.' LIMIT 1') or dash_fatal($db->error);
+  if ($result->num_rows < 1) dash_fatal('The ad you\'ve tried to apply to no longer exists.');
+  $appinfo = $result->fetch_assoc();
+  $result->free();
+  $result = $db->query('SELECT users.name, users.email, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM users LEFT JOIN ratings ON ratings.rated = users.id') or dash_fatal($db->error);
+  $uinfo = $result->fetch_assoc();
+  $result->free();
+  $options = array(
+    'rid' => $appinfo['id'],
+    'adname' => $appinfo['title'],
+    'seekername' => $appinfo['name'],
+    'seekerrating' => is_null($uinfo['rating']) ? 'has yet to be rated' : 'is rated '.number_format($uinfo['rating'], 1).' stars',
+    'seekereml' => $uinfo['email'],
+    'seekerid' => $appinfo['seeker'],
+  );
+  mail($appinfo['email'], '"'.$appinfo['title'].'" Has Received a Response', tpl($options, 'app_eml.tpl'), "From: ".$b_config['mail_from']."\r\nContent-type: text/html");
+}
 ?>
