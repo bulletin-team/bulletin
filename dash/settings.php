@@ -6,10 +6,10 @@ global $b_config, $b_user;
 $title = 'Account Settings / Bulletin';
 require('header.php');
 if (!empty($_POST['change'])) {
-  if ($b_user['password'] != hash('sha512', $_POST['oldpass'])) dash_fatal('The password you entered does not match your current password.');
+  if ($b_user['password'] != bulletin_hash($_POST['oldpass'])) dash_fatal('The password you entered does not match your current password.');
   if (!empty($_POST['newpass1'])) {
     if ($_POST['newpass1'] != $_POST['newpass2']) dash_fatal('Your new passwords do not match.');
-    $db->query('UPDATE users SET password = \''.hash('sha512', $_POST['newpass1']).'\' WHERE id = '.$b_user['id']) or dash_fatal($db->error);
+    $db->query('UPDATE users SET password = \''.bulletin_hash($_POST['newpass1']).'\' WHERE id = '.$b_user['id']) or dash_fatal($db->error);
     if ($db->affected_rows < 1) dash_fatal('Your password could not be changed.');
   }
 

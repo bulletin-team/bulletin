@@ -37,20 +37,20 @@ if (!empty($_POST['signup'])) {
 
   $stmt = $db->prepare('INSERT INTO users (type, name, email, password, zipcode, phone, session) VALUES (?, ?, ?, ?, ?, ?, ?)') or fatal($db->error);
   $type = intval($_POST['type']) ? 'EMPLOYER' : 'EMPLOYEE';
-  $pass = hash('sha512', $_POST['password']);
+  $pass = bulletin_hash($_POST['password']);
   $area = (intval($_POST['phone1'])>0)?intval($_POST['phone1']):intval(substr($_POST['phone1'], 1, -1));
   $phone = intval($_POST['phone0']).' ('.$area.') '.intval($_POST['phone2']).'-'.intval($_POST['phone3']);
   $sess = uniqid('act', true);
-  $stmt->bind_param('sssssss', $type, $_POST['name'], $_POST['email'], $pass, $_POST['zip'], $phone, hash('sha512', $sess));
+  $stmt->bind_param('sssssss', $type, $_POST['name'], $_POST['email'], $pass, $_POST['zip'], $phone, bulletin_hash($sess));
   $stmt->execute();
   if ($stmt->affected_rows < 1) fatal('Failed to affect database.');
   $uid = intval($stmt->insert_id);
   $stmt->close();
   $db->close();
 
-  mail($_POST['email'], 'Activate Your Bulletin Account', eml_tpl(array(
+  bulletin_mail($_POST['email'], 'Activate Your Bulletin Account', eml_tpl(array(
     'activation_vars' => 'uid='.$uid.'&key='.$sess,
-  )), "From: ".$b_config['mail_from']."\r\nContent-type: text/html") or fatal('We didn\'t manage to send out your activation email. Please try again later.');
+  ))) or fatal('We didn\'t manage to send out your activation email. Please try again later.');
   fatal('An activation email has been sent to the address you supplied. To access your account, click the \'Activate Account\' link when you receive the email.', $b_config['base_url'].'login.php');
 }
 

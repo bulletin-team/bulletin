@@ -4,12 +4,12 @@ require("inc/common.php");
 if ($b_user["id"] > 0) loggedin();
 if (!empty($_POST["email"]) && !empty($_POST["password"])) {
   $db = new bdb() or fatal($db->error);
-  $result = $db->query("SELECT id FROM users WHERE email = '".$db->escape_string($_POST["email"])."' AND password = '".hash("sha512", $_POST["password"])."' AND active = 1 LIMIT 1") or fatal($db->error);
+  $result = $db->query("SELECT id FROM users WHERE email = '".$db->escape_string($_POST["email"])."' AND password = '".bulletin_hash($_POST["password"])."' AND active = 1 LIMIT 1") or fatal($db->error);
   if ($result->num_rows < 1) l_redirect('login.php?err=1');
   $row = $result->fetch_assoc();
   $result->free();
   $token = uniqid("bu".$row["id"], true);
-  $db->query("UPDATE users SET session = '".hash("sha512", $token)."' WHERE id = ".intval($row["id"])) or fatal($db->error);
+  $db->query("UPDATE users SET session = '".bulletin_hash($token)."' WHERE id = ".intval($row["id"])) or fatal($db->error);
   if ($db->affected_rows < 1) fatal("Could not sync with database.");
   $db->close();
   setcookie($b_config['c_name'], intval($row["id"]).';'.$token, empty($_POST['remember']) ? 0 : (time()+$b_config['c_expire']), $b_config['c_path'], $b_config['c_dom'], $b_config['c_sec'], $b_config['c_http']);

@@ -76,6 +76,6 @@ function app_trigger ($responseid) {
     'seekereml' => $uinfo['email'],
     'seekerid' => $appinfo['seeker'],
   );
-  mail($appinfo['email'], '"'.$appinfo['title'].'" Has Received a Response', tpl($options, 'app_eml.tpl'), "From: ".$b_config['mail_from']."\r\nContent-type: text/html");
+  bulletin_mail($appinfo['email'], '"'.$appinfo['title'].'" Has Received a Response', tpl($options, 'app_eml.tpl'));
 }
 ?>

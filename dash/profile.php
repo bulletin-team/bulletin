@@ -69,9 +69,9 @@ $phonelink = '+'.preg_replace('/[^0-9]/', '', $user['phone']);
   $usepropic = '';
   if ($_POST['email'] != $b_user['email']) {
     $deactivate = ', active = 0';
-    mail($_POST['email'], 'Verify Your Bulletin Email', eml_tpl(array(
+    bulletin_mail($_POST['email'], 'Verify Your Bulletin Email', tpl(array(
       'activation_vars' => 'uid='.$b_user['id'].'&key='.$b_user['session'],
-    )), "From: ".$b_config['mail_from']."\r\nContent-type: text/html") or dash_fatal('We couldn\'t send mail to your new email address, so your profile has not been updated.');
+    ), 'changed.tpl')) or dash_fatal('We couldn\'t send mail to your new email address, so your profile has not been updated.');
   }
   if (!empty($_FILES['picture']['tmp_name'])) {
     $usepropic = ', picture = id';

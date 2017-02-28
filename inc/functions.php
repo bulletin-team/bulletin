@@ -64,4 +64,20 @@ function redirect ($url) {
   header('Location: '.$url);
   fatal('Redirecting...', $url);
 }
+
+function bulletin_hash ($str, $salt = '') {
+  return hash('sha512', $str);
+}
+
+function bulletin_mail ($to, $subject, $body) {
+  global $b_config;
+
+  $mg = new Mailgun\Mailgun($b_config['mg_key']);
+  return $mg->sendMessage($b_config['mg_dom'], array(
+    'from' => $b_config['mail_from'],
+    'to' => $to,
+    'subject' => $subject,
+    'html' => $body,
+  ));
+}
 ?>

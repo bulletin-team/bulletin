@@ -28,5 +28,12 @@ $b_config = array(
   // Number of ads per page in the employee dashboard
   'ads_per_page' => 10,
 
+  // Email footer
+  'eml_footer' => '',
+
+  // Mailgun config
+  'mg_key' => '',
+  'mg_dom' => '',
+
 );
 ?>
