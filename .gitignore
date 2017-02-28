@@ -6,3 +6,7 @@
 # sensitive config file
 # contains database passwords and site-specific options
 inc/config.php
+
+# profile picture uploads
+!dash/uimg/default.png
+dash/uimg/*

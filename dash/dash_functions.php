@@ -59,10 +59,12 @@ function draw_ad ($row) {
 function app_trigger ($responseid) {
   global $db;  
 
-  $result = $db->query('SELECT responses.id, responses.uid AS seeker, responses.adid, responses.comment, ads.title, users.name, users.email FROM responses INNER JOIN ads ON responses.adid = ads.id INNER JOIN users ON ads.uid = users.id WHERE responses.id = '.$responseid.' LIMIT 1') or dash_fatal($db->error);
+  $result = $db->query('SELECT responses.id, responses.uid AS seeker, responses.adid, responses.comment, ads.title, users.name, users.email, users.notify FROM responses INNER JOIN ads ON responses.adid = ads.id INNER JOIN users ON ads.uid = users.id WHERE responses.id = '.$responseid.' LIMIT 1') or dash_fatal($db->error);
   if ($result->num_rows < 1) dash_fatal('The ad you\'ve tried to apply to no longer exists.');
   $appinfo = $result->fetch_assoc();
   $result->free();
+  if (!$appinfo['notify']) return;
+
   $result = $db->query('SELECT users.name, users.email, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM users LEFT JOIN ratings ON ratings.rated = users.id') or dash_fatal($db->error);
   $uinfo = $result->fetch_assoc();
   $result->free();
