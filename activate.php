@@ -1,9 +1,6 @@
 <?php
 require('inc/common.php');
 
-// TODO: remove this to re-enable registration
-fatal('Registration has been disabled at the moment. We\'re sorry for the inconvenience.');
-
 $db = new bdb() or fatal($db-error);
 $uid = intval($_GET['uid']);
 $key = $_GET['key'];
