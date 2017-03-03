@@ -2,44 +2,52 @@
 
 namespace Mailgun\Lists;
 
-use Mailgun\Messages\Exceptions\InvalidParameter;
-use Mailgun\Messages\Exceptions\TooManyParameters;
-use Mailgun\Messages\Expcetions\InvalidParameterType;
+/**
+ * This class is used for creating a unique hash for
+ * mailing list subscription double-opt in requests.
+ *
+ * @link https://github.com/mailgun/mailgun-php/blob/master/src/Mailgun/Lists/README.md
+ */
+class OptInHandler
+{
+    /**
+     * @param string $mailingList
+     * @param string $secretAppId
+     * @param string $recipientAddress
+     *
+     * @return string
+     */
+    public function generateHash($mailingList, $secretAppId, $recipientAddress)
+    {
+        $innerPayload = ['r' => $recipientAddress, 'l' => $mailingList];
+        $encodedInnerPayload = base64_encode(json_encode($innerPayload));
 
-/* 
-   This class is used for creating a unique hash for 
-   mailing list subscription double-opt in requests.
-*/
+        $innerHash = hash_hmac('sha1', $encodedInnerPayload, $secretAppId);
+        $outerPayload = ['h' => $innerHash, 'p' => $encodedInnerPayload];
 
-class OptInHandler{
+        return urlencode(base64_encode(json_encode($outerPayload)));
+    }
 
-	function __construct(){
-		
-	}
-	
-	public function generateHash($mailingList, $secretAppId, $recipientAddress){
-		$innerPayload = array('r' => $recipientAddress, 'l' => $mailingList);
-		$encodedInnerPayload = base64_encode(json_encode($innerPayload));
+    /**
+     * @param string $secretAppId
+     * @param string $uniqueHash
+     *
+     * @return array|bool
+     */
+    public function validateHash($secretAppId, $uniqueHash)
+    {
+        $decodedOuterPayload = json_decode(base64_decode(urldecode($uniqueHash)), true);
 
-		$innerHash = hash_hmac("sha1", $encodedInnerPayload, $secretAppId);
-		$outerPayload = array('h' => $innerHash, 'p' => $encodedInnerPayload);
+        $decodedHash = $decodedOuterPayload['h'];
+        $innerPayload = $decodedOuterPayload['p'];
 
-		return urlencode(base64_encode(json_encode($outerPayload)));
-	}
+        $decodedInnerPayload = json_decode(base64_decode($innerPayload), true);
+        $computedInnerHash = hash_hmac('sha1', $innerPayload, $secretAppId);
 
-	public function validateHash($secretAppId, $uniqueHash){
-		$decodedOuterPayload = json_decode(base64_decode(urldecode($uniqueHash)), true);
+        if ($computedInnerHash == $decodedHash) {
+            return ['recipientAddress' => $decodedInnerPayload['r'], 'mailingList' => $decodedInnerPayload['l']];
+        }
 
-		$decodedHash = $decodedOuterPayload['h'];
-		$innerPayload = $decodedOuterPayload['p'];
-
-		$decodedInnerPayload = json_decode(base64_decode($innerPayload), true);
-		$computedInnerHash = hash_hmac("sha1", $innerPayload, $secretAppId);
-
-		if($computedInnerHash == $decodedHash){
-			return array('recipientAddress' => $decodedInnerPayload['r'], 'mailingList' => $decodedInnerPayload['l']);
-		}
-
-		return false;
-	}
+        return false;
+    }
 }

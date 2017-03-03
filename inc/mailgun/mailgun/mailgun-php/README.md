@@ -1,5 +1,4 @@
-Mailgun-PHP
-===========
+# Mailgun PHP client
 
 This is the Mailgun PHP SDK. This SDK contains methods for easily interacting 
 with the Mailgun API. 
@@ -10,34 +9,43 @@ at http://documentation.mailgun.com
 [![Latest Stable Version](https://poser.pugx.org/mailgun/mailgun-php/v/stable.png)](https://packagist.org/packages/mailgun/mailgun-php)
 [![Build Status](https://travis-ci.org/mailgun/mailgun-php.png)](https://travis-ci.org/mailgun/mailgun-php)
 
-Installation
-------------
+## Installation
+
 To install the SDK, you will need to be using [Composer](http://getcomposer.org/) 
 in your project. 
 If you aren't using Composer yet, it's really simple! Here's how to install 
-composer and the Mailgun SDK.
+composer:
 
-```PHP
-# Install Composer
+```bash
 curl -sS https://getcomposer.org/installer | php
+```
 
-# Add Mailgun as a dependency
-php composer.phar require mailgun/mailgun-php:~1.7.1
-``` 
+The Mailgun api client is not hard coupled to Guzzle or any other library that sends HTTP messags. It uses an abstraction 
+called HTTPlug. This will give you the flexibilty to choose what PSR-7 implementaion and HTTP client to use. 
 
+If you just want to get started quickly you should run the following command: 
+
+```bash
+php composer.phar require mailgun/mailgun-php php-http/curl-client guzzlehttp/psr7 php-http/message
+```
 **For shared hosts without SSH access, check out our [Shared Host Instructions](SharedHostInstall.md).**
 
-**Rather just download the files? [Library Download](https://9f67cbbd1116d8afb399-7760483f5d1e5f28c2d253278a2a5045.ssl.cf2.rackcdn.com/mailgun-php-1.7.1.zip).**
+### Why requiring so many packages?
 
-Next, require Composer's autoloader, in your application, to automatically 
-load the Mailgun SDK in your project:
-```PHP
+Mailgun has a dependency on the virtual package
+[php-http/client-implementation](https://packagist.org/providers/php-http/client-implementation) which requires to you install **an** adapter, but we do not care which one. That is an implemnetation detail in your application. We also need **a** PSR-7 implementation and **a** message factory. 
+
+You do not have to use the `php-http/curl-client` if you do not want to. You may use the `php-http/guzzle6-adapter`. Read more about the virtual packages, why this is a good idea and about the flexibility it brings at the [HTTPlug docs](http://docs.php-http.org/en/latest/httplug/users.html).
+
+## Usage
+
+You should always use Composer's autoloader in your application to automatically load the your dependencies. All examples below assumes you've already included this in your file:
+
+```php
 require 'vendor/autoload.php';
 use Mailgun\Mailgun;
 ```
 
-Usage
------
 Here's how to send a message using the SDK:
 
 ```php
@@ -63,8 +71,7 @@ $mg->get("$domain/log", array('limit' => 25,
                               'skip'  => 0));
 ```
 
-Response
---------
+### Response
 
 The results, provided by the endpoint, are returned as an object, which you 
 can traverse like an array. 
@@ -122,8 +129,7 @@ object(stdClass)#26 (2) {
 }
 ```
 
-Debugging
----------
+### Debugging
 
 Debugging the PHP SDK can be really helpful when things aren't working quite right. 
 To debug the SDK, here are some suggestions: 
@@ -141,7 +147,9 @@ Go to http://bin.mailgun.net. The Postbin will generate a special URL. Save that
 
 ```php
 # First, instantiate the SDK with your API credentials and define your domain. 
-$mg = new Mailgun('key-example', 'bin.mailgun.net', 'aecf68de', $ssl = False);
+$mg = new Mailgun('key-example', null, 'bin.mailgun.net');
+$mg->setApiVersion('aecf68de');
+$mg->setSslEnabled(false);
 $domain = 'example.com';
 
 # Now, compose and send your message.
@@ -150,8 +158,7 @@ $mg->sendMessage($domain, array('from'    => 'bob@example.com',
                                 'subject' => 'The PHP SDK is awesome!', 
                                 'text'    => 'It is so simple to send a message.'));
 ```
-Additional Info
----------------
+### Additional Info
 
 For usage examples on each API endpoint, head over to our official documentation 
 pages. 
@@ -165,8 +172,15 @@ Batch Message is an extension of Message Builder, and allows you to easily send
 a batch message job within a few seconds. The complexity of 
 batch messaging is eliminated! 
 
-Support and Feedback
---------------------
+## Framework integration
+
+If you are using a framework you might consider these composer packages to make the framework integration easier. 
+
+* [tehplague/swiftmailer-mailgun-bundle](https://github.com/tehplague/swiftmailer-mailgun-bundle) for Symfony2
+* [Bogardo/Mailgun](https://github.com/Bogardo/Mailgun) for Laravel 4
+* [katanyoo/yii2-mailgun-mailer](https://github.com/katanyoo/yii2-mailgun-mailer) for Yii2
+
+## Support and Feedback
 
 Be sure to visit the Mailgun official 
 [documentation website](http://documentation.mailgun.com/) for additional 

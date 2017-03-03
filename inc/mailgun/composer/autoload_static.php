@@ -4,43 +4,84 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbc00ddcd2e8da9499a4bfd011e6c39c6
+class ComposerStaticInit3ba98756a98c572787564d9c42c1f5a3
 {
+    public static $files = array (
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'ddc0a4d7e61c0286f0f8593b1903e894' => __DIR__ . '/..' . '/clue/stream-filter/src/functions.php',
+        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'P' => 
         array (
-            'Symfony\\Component\\EventDispatcher\\' => 34,
+            'Psr\\Http\\Message\\' => 17,
+        ),
+        'H' => 
+        array (
+            'Http\\Promise\\' => 13,
+            'Http\\Message\\MultipartStream\\' => 29,
+            'Http\\Message\\' => 13,
+            'Http\\Discovery\\' => 15,
+            'Http\\Client\\Curl\\' => 17,
+            'Http\\Client\\' => 12,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+        ),
+        'C' => 
+        array (
+            'Clue\\StreamFilter\\' => 18,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Component\\EventDispatcher\\' => 
+        'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Http\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/promise/src',
+        ),
+        'Http\\Message\\MultipartStream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
+        ),
+        'Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/message-factory/src',
+            1 => __DIR__ . '/..' . '/php-http/message/src',
+        ),
+        'Http\\Discovery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/discovery/src',
+        ),
+        'Http\\Client\\Curl\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/curl-client/src',
+        ),
+        'Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/httplug/src',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'Clue\\StreamFilter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/clue/stream-filter/src',
         ),
     );
 
     public static $prefixesPsr0 = array (
         'M' => 
         array (
-            'Mailgun\\Tests' => 
-            array (
-                0 => __DIR__ . '/..' . '/mailgun/mailgun-php/tests',
-            ),
             'Mailgun' => 
             array (
                 0 => __DIR__ . '/..' . '/mailgun/mailgun-php/src',
-            ),
-        ),
-        'G' => 
-        array (
-            'Guzzle\\Tests' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzle/guzzle/tests',
-            ),
-            'Guzzle' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
             ),
         ),
     );
@@ -48,9 +89,9 @@ class ComposerStaticInitbc00ddcd2e8da9499a4bfd011e6c39c6
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbc00ddcd2e8da9499a4bfd011e6c39c6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbc00ddcd2e8da9499a4bfd011e6c39c6::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitbc00ddcd2e8da9499a4bfd011e6c39c6::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3ba98756a98c572787564d9c42c1f5a3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3ba98756a98c572787564d9c42c1f5a3::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3ba98756a98c572787564d9c42c1f5a3::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
