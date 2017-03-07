@@ -65,7 +65,7 @@ function app_trigger ($responseid) {
   $result->free();
   if (!$appinfo['notify']) return;
 
-  $result = $db->query('SELECT users.name, users.email, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM users LEFT JOIN ratings ON ratings.rated = users.id') or dash_fatal($db->error);
+  $result = $db->query('SELECT users.name, users.email, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM users LEFT JOIN ratings ON ratings.rated = users.id WHERE users.id = '.$appinfo['seeker'].' LIMIT 1') or dash_fatal($db->error);
   $uinfo = $result->fetch_assoc();
   $result->free();
   $options = array(
