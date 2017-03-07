@@ -68,9 +68,10 @@ $phonelink = '+'.preg_replace('/[^0-9]/', '', $user['phone']);
   $deactivate = '';
   $usepropic = '';
   if ($_POST['email'] != $b_user['email']) {
-    $deactivate = ', active = 0';
+    $session = uniqid('ch', true);
+    $deactivate = ', session = \''.bulletin_hash($session).'\', active = 0';
     bulletin_mail($_POST['email'], 'Verify Your Bulletin Email', tpl(array(
-      'activation_vars' => 'uid='.$b_user['id'].'&key='.$b_user['session'],
+      'activation_vars' => 'uid='.$b_user['id'].'&key='.$session,
     ), 'changed.tpl')) or dash_fatal('We couldn\'t send mail to your new email address, so your profile has not been updated.');
   }
   if (!empty($_FILES['picture']['tmp_name'])) {
