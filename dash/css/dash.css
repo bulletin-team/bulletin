@@ -313,3 +313,25 @@ h3 a:hover, h4 a:hover {
   margin: 0;
   text-align: center;
 }
+.box {
+  width: 550px;
+  margin: 2em auto;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+  padding: 1em;
+}
+.cbox {
+  text-align: center;
+}
+.box h1, .box h3, .box h4, .box p {
+  margin: 0.125em auto;
+}
+.box .hr {
+  height: 1px;
+  background-color: #eeeeee;
+  margin: 0.75em auto;
+}
+.cbox .hr {
+  width: 90%;
+}

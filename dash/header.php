@@ -40,6 +40,9 @@ foreach ($navtitles as $k => $title) {
           <a href="<?=$b_config['base_url'].'dash/profile.php';?>">
             <span class="navspan"><?=htmlentities($b_user['name']);?>&nbsp;&#x25be;</span>
             <ul class="subnav">
+              <a href="<?=$b_config['base_url'].'dash/profile.php';?>">
+                <li><span class="navspan">Profile</span></li>
+              </a>
               <a href="<?=$b_config['base_url'].'dash/settings.php';?>">
                 <li><span class="navspan">Settings</span></li>
               </a>
