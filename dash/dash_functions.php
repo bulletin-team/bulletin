@@ -71,7 +71,7 @@ function app_trigger ($responseid) {
   $options = array(
     'rid' => $appinfo['id'],
     'adname' => $appinfo['title'],
-    'seekername' => $appinfo['name'],
+    'seekername' => $uinfo['name'],
     'seekerrating' => is_null($uinfo['rating']) ? 'has yet to be rated' : 'is rated '.number_format($uinfo['rating'], 1).' stars',
     'seekereml' => $uinfo['email'],
     'seekerid' => $appinfo['seeker'],
