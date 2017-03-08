@@ -23,10 +23,18 @@ function rating_format ($rating = null, $typestr = 'Employer') {
 function draw_noads () {
 ?>
       <div class="job">
-        <a href="#" class="jobxbtn"></a>
         <p class="jobtitle"><a href="post.php">Post an Ad!</a></p>
-        <p class="jobpay">Costs $5.00</p>
+        <p class="jobpay">It's FREE!</p>
         <p class="jobblurb">You haven't posted any ads yet! It's a quick and easy way to get connected to the workers you need.<br /><a href="post.php">Post an ad!</a></p>
+      </div>
+<?php
+}
+function draw_noapps () {
+?>
+      <div class="job">
+        <p class="jobtitle"><a href="post.php">No Applications Yet!</a></p>
+        <p class="jobpay">Post another ad. It's FREE!</p>
+        <p class="jobblurb">This ad hasn't received any responses yet. In the meantime, be sure to post more to maximize your exposure.<br /><a href="post.php">Post an ad!</a></p>
       </div>
 <?php
 }
@@ -42,14 +50,21 @@ function draw_ad ($row) {
     echo '        <p class="jobcat">'.htmlentities($row['cat_name']).'</p>'.PHP_EOL;
 ?>
         <p class="joblocation"><?=htmlentities($row['location']);?></p>
-<?php
-  if (is_null($row['rating']))
-    echo '        <p class="jobstars">Employer Not Rated</p>'.PHP_EOL;
-  else
-    echo '        <p class="jobstars">'.$row['rating'].' Star Employer</p>'.PHP_EOL;
-?>
+        <p class="jobstars"><?=rating_format($row['rating']);?></p>
         <p class="jobpay">Pays $<?=number_format($row['pay'], 2);?></p>
         <p class="jobblurb"><?=htmlentities(substr($row['description'], 0, min(strlen($row['description']), 160)));?> <a href="ads.php?id=<?=$row['id'];?>">[...]</a></p>
+        </p>
+      </div>
+<?php
+}
+function draw_app ($row) {
+?>
+      <div class="job">
+        <a href="#" class="appxbtn"></a>
+        <p class="jobtitle"><a href="review.php?id=<?=$row['id'];?>"><?=htmlentities($row['name']);?></a></p>
+        <p class="jobstars"><?=rating_format($row['rating'], 'Employee');?></p>
+        <p class="joblocation"><?=htmlentities($row['address']);?></p>
+        <p class="jobblurb"><?=htmlentities(substr($row['comment'], 0, min(strlen($row['comment']), 160)));?> <a href="review.php?id=<?=$row['id'];?>">[...]</a></p>
         </p>
       </div>
 <?php

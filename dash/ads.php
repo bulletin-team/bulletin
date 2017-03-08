@@ -33,8 +33,14 @@ else
           </div>
           <div id="fjfright">
             <p id="ebio"><?=(is_null($row['bio']) ? '<em>No bio included in profile.</em>' : htmlentities($row['bio']));?></p>
+<?php
+if ($b_user['type'] == 'EMPLOYEE') {
+?>
             <h4>Respond to this Ad</h4>
             <p id="eapply"><a href="apply.php?id=<?=intval($row['id']);?>">Apply Now</a></p>
+<?php
+}
+?>
             <h4>Contact the Employer</h4>
             <p id="eemail"><a href="mailto:<?=htmlentities($row['email']);?>"><?=htmlentities($row['email']);?></a></p>
 <?php

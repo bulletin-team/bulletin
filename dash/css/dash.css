@@ -145,7 +145,7 @@ body {
   background-repeat: no-repeat;
   margin-right: 3px;
 }
-.jobxbtn {
+.jobxbtn, .appxbtn {
   display: block;
   width: 16px;
   height: 16px;
@@ -154,7 +154,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.jobxbtn:hover {
+.jobxbtn:hover, .appxbtn:hover {
   background-image: url('../img/x_hover.png');
   cursor: pointer;
 }
