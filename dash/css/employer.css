@@ -15,3 +15,15 @@
   color: #000000;
   margin-left: 10px;
 }
+.appcbtn {
+  display: block;
+  width: 16px;
+  height: 16px;
+  float: left;
+  background-image: url('../img/check_blank.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.appcbtn:hover {
+ background-image: url('../img/check_hover.png');
+}

@@ -29,8 +29,10 @@ if (!empty($extra_head)) echo $extra_head;
 <?php
 foreach ($navtitles as $k => $title) {
   $link = $navlinks[$k];
+  $test = '/'.$link;
+  $selected = ($_SERVER['SCRIPT_NAME'] == $test || $_SERVER['REQUEST_URI'] == $test);
 ?>
-        <a href="<?=htmlentities($b_config['base_url'].$link);?>">
+        <a<?=$selected?' class="selected"':'';?> href="<?=htmlentities($b_config['base_url'].$link);?>">
           <span class="navspan"><?=htmlentities($title);?></span>
         </a>
 <?php

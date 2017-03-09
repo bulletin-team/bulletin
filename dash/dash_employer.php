@@ -22,12 +22,12 @@ $result->free();
       </form>
 <?php
 if ($view == 0) {
-  $result = $db->query('SELECT ads.*, categories.cat_name, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads LEFT JOIN categories ON ads.cat = categories.id LEFT JOIN ratings ON ads.uid = ratings.rated WHERE ads.uid = '.$b_user['id'].' AND ads.closed = 0 GROUP BY ads.id LIMIT 0, '.$b_config['ads_per_page']) or fatal($db->error);
+  $result = $db->query('SELECT ads.*, categories.cat_name, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads LEFT JOIN categories ON ads.cat = categories.id LEFT JOIN ratings ON ads.uid = ratings.rated WHERE ads.uid = '.$b_user['id'].' AND ads.closed = 0 GROUP BY ads.id') or fatal($db->error);
   if ($result->num_rows < 1) draw_noads();
   while ($row = $result->fetch_assoc()) draw_ad($row);
   $result->free();
 } else {
-  $result = $db->query('SELECT responses.id, responses.comment, users.name, users.address, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM responses INNER JOIN users ON responses.uid = users.id LEFT JOIN ratings ON ratings.rated = responses.uid WHERE responses.adid = '.$view) or dash_fatal($db->error);
+  $result = $db->query('SELECT responses.id, responses.comment, responses.uid, users.name, users.address, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM responses INNER JOIN users ON responses.uid = users.id LEFT JOIN ratings ON ratings.rated = responses.uid WHERE responses.adid = '.$view.' AND responses.matched = 0 GROUP BY responses.id') or dash_fatal($db->error);
   if ($result->num_rows < 1) draw_noapps();
   while ($row = $result->fetch_assoc()) draw_app($row);
   $result->free();

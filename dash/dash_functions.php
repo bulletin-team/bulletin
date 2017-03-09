@@ -17,8 +17,7 @@ function typestr ($type) {
   }
 }
 function rating_format ($rating = null, $typestr = 'Employer') {
-  if (is_null($rating)) return $typestr.' Not Rated';
-  return number_format($rating, 1).' Star '.$typestr;
+  return '<span class="ratingdata" data-rating="'.(is_null($rating) ? 'undef' : number_format($rating, 1)).'"></span>';
 }
 function draw_noads () {
 ?>
@@ -57,14 +56,16 @@ function draw_ad ($row) {
       </div>
 <?php
 }
+
 function draw_app ($row) {
 ?>
       <div class="job">
-        <a href="#" class="appxbtn"></a>
-        <p class="jobtitle"><a href="review.php?id=<?=$row['id'];?>"><?=htmlentities($row['name']);?></a></p>
+        <a href="#" class="appxbtn" data-rid="<?=$row['id'];?>"></a>
+        <a href="#" class="appcbtn" data-rid="<?=$row['id'];?>"></a>
+        <p class="jobtitle"><a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
         <p class="jobstars"><?=rating_format($row['rating'], 'Employee');?></p>
-        <p class="joblocation"><?=htmlentities($row['address']);?></p>
-        <p class="jobblurb"><?=htmlentities(substr($row['comment'], 0, min(strlen($row['comment']), 160)));?> <a href="review.php?id=<?=$row['id'];?>">[...]</a></p>
+        <p class="joblocation"><?=is_null($row['address']) ? '<em>No address listed.</em>' : htmlentities($row['address']);?></p>
+        <p class="jobblurb"><?=is_null($row['comment']) ? '<em>No comment included.</em>' : htmlentities($row['comment']);?></p>
         </p>
       </div>
 <?php
@@ -92,5 +93,9 @@ function app_trigger ($responseid) {
     'seekerid' => $appinfo['seeker'],
   );
   bulletin_mail($appinfo['email'], '"'.$appinfo['title'].'" Has Received a Response', tpl($options, 'app_eml.tpl'));
+}
+function hire_trigger ($rid) {
+  global $db;
+  // TODO: this busywork
 }
 ?>

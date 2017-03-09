@@ -1,0 +1,65 @@
+#postform input, #postform textarea, #postform select {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+  font-family: 'Myriad Pro';
+  font-size: 12pt;
+}
+#postform p, #postform h3, #postform h4 {
+  margin: 0;
+}
+#postform input[type=text], #postform input[type=password], #postform input[type=number], #postform input[type=datetime-local] {
+  width: 248px;
+  padding: 6px 12px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+#postform input[type=number] {
+  width: 64px;
+}
+#postform input[type=submit], #postform input[type=button], #postform button {
+  background-color: #fb4d00;
+  padding: 5px 20px 3px;
+  border-style: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+}
+#postform input[type=submit]:hover, #postform input[type=button]:hover, #postform button:hover {
+  background-color: #fb7700;
+}
+#postform textarea {
+  margin: 0.25em auto;
+  width: 450px;
+  height: 150px;
+  resize: none;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+#postform select {
+  padding: 5px;
+  background-color: #ffffff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dddddd;
+  border-radius: 5px;
+  color: #000000;
+}
+#pfpt1 {
+  text-align: left;
+  padding: 0 2em;
+}
+#pfpt2 {
+  padding: 0 2em;
+}
+#pfpt2 input {
+  margin: 0.25em 5px;
+}
+#inptitle {
+  width: 90%;
+}
+#postform .err {
+  margin: 1em;
+  color: #a00000;
+  font-weight: bold;
+}

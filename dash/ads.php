@@ -6,7 +6,7 @@ $adid = intval($_GET['id']);
 if ($adid < 1) fatal('No ad ID has been provided. You must have reached this page in error.');
 $title = 'Ad / Bulletin';
 require('header.php');
-$result = $db->query('SELECT ads.id, ads.uid, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, users.email, users.phone, users.picture, users.bio, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' LIMIT 1') or dash_fatal($db->error);
+$result = $db->query('SELECT ads.id, ads.uid, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, users.email, users.phone, users.picture, users.bio, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' GROUP BY ads.id LIMIT 1') or dash_fatal($db->error);
 if ($result->num_rows < 1) dash_fatal('No ad with this ID has been found.');
 $row = $result->fetch_assoc();
 $result->free();

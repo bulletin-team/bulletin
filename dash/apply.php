@@ -2,6 +2,8 @@
 define('HEIRARCHY', 1);
 
 require('dash_common.php');
+if ($b_user['type'] != 'EMPLOYEE') fatal('Only job seeker accounts are allowed to apply to ads. Sorry for the inconvenience.');
+
 $adid = intval($_GET['id']);
 if ($adid < 1) fatal('No ad ID has been provided. You must have reached this page in error.');
 $title = 'Apply / Bulletin';
@@ -18,7 +20,7 @@ if (!empty($_POST['apply'])) {
   dash_fatal('Your application has been submitted.', $b_config['base_url'].'dash/');
 }
 
-$result = $db->query('SELECT ads.id, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' LIMIT 1') or dash_fatal($db->error);
+$result = $db->query('SELECT ads.id, ads.title, ads.pay, ads.time, ads.location, ads.description, users.name, users.picture, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads INNER JOIN users ON users.id = ads.uid LEFT JOIN ratings ON ratings.rated = ads.uid WHERE ads.id = '.$adid.' GROUP BY ads.id LIMIT 1') or dash_fatal($db->error);
 if ($result->num_rows < 1) dash_fatal('No ad with this ID has been found.');
 $row = $result->fetch_assoc();
 $result->free();
