@@ -9,7 +9,7 @@ if (!$public) $extra_head .= '    <script type="text/javascript" src="js/profile
 require('header.php');
 $user = $b_user;
 if ($public) {
-  $result = $db->query('SELECT users.*, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM users LEFT JOIN ratings ON ratings.rated = users.id LEFT JOIN responses ON responses.uid = users.id WHERE users.id = '.intval($_GET['id']).' AND users.active = 1 AND responses.matched = 1 LIMIT 1') or dash_fatal($db->error);
+  $result = $db->query('SELECT users.*, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM users LEFT JOIN ratings ON ratings.rated = users.id WHERE users.id = '.intval($_GET['id']).' AND users.active = 1 GROUP BY users.id LIMIT 1') or dash_fatal($db->error);
   $user = $result->fetch_assoc();
   $result->free();
   if ($user['id'] < 1) dash_fatal('A user with that ID does not exist. You must have reached this page in error.');

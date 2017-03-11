@@ -23,7 +23,7 @@ do {
       }
     }
     $stmt = $db->prepare('INSERT INTO ads (uid, title, cat, pay, time, location, description) VALUES (?, ?, ?, ?, ?, ?, ?)') or dash_fatal($db->error);
-    $stmt->bind_param('isidiss', $b_user['id'], $_POST['title'], $_POST['cat'], $_POST['pay'], strtotime($_POST['time']), $_POST['location'], $_POST['description']);
+    $stmt->bind_param('isidiss', $b_user['id'], $_POST['title'], $_POST['category'], $_POST['pay'], strtotime($_POST['time']), $_POST['location'], $_POST['description']);
     $stmt->execute();
     if ($stmt->affected_rows < 1) dash_fatal('Your ad was unable to be posted.');
     dash_fatal('Your ad has been posted.', $b_config['base_url'].'dash/ads.php?id='.$stmt->insert_id);

@@ -43,8 +43,8 @@ foreach ($navtitles as $k => $title) {
             <span class="navspan"><?=htmlentities($b_user['name']);?>&nbsp;&#x25be;</span>
           </a>
           <ul class="subnav">
-            <a href="<?=$b_config['base_url'].'dash/profile.php';?>">
-              <li><span class="navspan">Profile</span></li>
+            <a href="<?=$b_config['base_url'].'dash/notif.php';?>">
+              <li><span class="navspan">News<?=$b_user['notif']>0?' ('.$b_user['notif'].')':'';?></span></li>
             </a>
             <a href="<?=$b_config['base_url'].'dash/settings.php';?>">
               <li><span class="navspan">Settings</span></li>

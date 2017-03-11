@@ -31,7 +31,7 @@ if (!empty($_POST['change'])) {
       <div id="fulljob" class="fjsettings">
         <div id="fjheader">
           <h3 id="fjhtitle"><a href="settings.php">Account Settings</a></h3>
-          <p id="fjhdesc">Adjusting for <?=htmlentities($b_user['email']);?></p>
+          <p id="fjhdesc">Adjusting for <?=htmlentities($b_user['name']);?></p>
         </div>
         <form action="<?=$_SERVER['REQUEST_URI'];?>" method="post">
           <div id="fjbody">

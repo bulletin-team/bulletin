@@ -73,19 +73,23 @@ function draw_app ($row) {
 
 // triggers
 function app_trigger ($responseid) {
-  global $db;  
+  global $db, $b_config;  
 
-  $result = $db->query('SELECT responses.id, responses.uid AS seeker, responses.adid, responses.comment, ads.title, users.name, users.email, users.notify FROM responses INNER JOIN ads ON responses.adid = ads.id INNER JOIN users ON ads.uid = users.id WHERE responses.id = '.$responseid.' LIMIT 1') or dash_fatal($db->error);
+  $result = $db->query('SELECT responses.id, responses.uid AS seeker, responses.adid, responses.comment, ads.title, users.id AS provider, users.name, users.email, users.notify FROM responses INNER JOIN ads ON responses.adid = ads.id INNER JOIN users ON ads.uid = users.id WHERE responses.id = '.intval($responseid).' LIMIT 1') or dash_fatal($db->error);
   if ($result->num_rows < 1) dash_fatal('The ad you\'ve tried to apply to no longer exists.');
   $appinfo = $result->fetch_assoc();
   $result->free();
-  if (!$appinfo['notify']) return;
 
   $result = $db->query('SELECT users.name, users.email, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM users LEFT JOIN ratings ON ratings.rated = users.id WHERE users.id = '.$appinfo['seeker'].' LIMIT 1') or dash_fatal($db->error);
   $uinfo = $result->fetch_assoc();
   $result->free();
+
+  $db->query('INSERT INTO notif (uid, icon, text, link) VALUES ('.$appinfo['provider'].', \'APPLIED\', \'"'.$db->escape_string($appinfo['title']).'" Has Received a Response\', \''.$db->escape_string($b_config['base_url'].'dash/?view='.$appinfo['adid']).'\')') or dash_fatal($db->error);
+
+  if (!$appinfo['notify']) return;
+
   $options = array(
-    'rid' => $appinfo['id'],
+    'adid' => $appinfo['adid'],
     'adname' => $appinfo['title'],
     'seekername' => $uinfo['name'],
     'seekerrating' => is_null($uinfo['rating']) ? 'has yet to be rated' : 'is rated '.number_format($uinfo['rating'], 1).' stars',
@@ -95,7 +99,29 @@ function app_trigger ($responseid) {
   bulletin_mail($appinfo['email'], '"'.$appinfo['title'].'" Has Received a Response', tpl($options, 'app_eml.tpl'));
 }
 function hire_trigger ($rid) {
-  global $db;
-  // TODO: this busywork
+  global $db, $b_config;
+
+  $result = $db->query('SELECT responses.adid, responses.uid AS seeker, ads.title, ads.uid, users.name, users.email, users.notify FROM responses INNER JOIN ads ON ads.id = responses.adid INNER JOIN users ON users.id = responses.uid WHERE responses.id = '.intval($rid).' LIMIT 1') or dash_fatal($db->error);
+  if ($result->num_rows < 1) dash_fatal('Oops! Something went wrong.');
+  $rinfo = $result->fetch_assoc();
+  $result->free();
+
+  $result = $db->query('SELECT users.name, users.email FROM users WHERE users.id = '.$rinfo['uid'].' LIMIT 1') or dash_fatal($db->error);
+  if ($result->num_rows < 1) dash_fatal('The employer you\'ve applied to no longer has an account with us.');
+  $pinfo = $result->fetch_assoc();
+  $result->free();
+
+  $db->query('INSERT INTO notif (uid, icon, text, link) VALUES ('.$rinfo['seeker'].', \'HIRED\', \'You\\\'ve been hired for "'.$db->escape_string($rinfo['title']).'"\', \''.$db->escape_string($b_config['base_url'].'dash/ads.php?id='.$rinfo['adid']).'\')') or dash_fatal($db->error);
+
+  if (!$rinfo['notify']) return;
+
+  $options = array(
+    'providername' => $pinfo['name'],
+    'adid' => $rinfo['adid'],
+    'adtitle' => $rinfo['title'],
+    'provideremail' => $pinfo['email'],
+    'providerid' => $rinfo['uid'],
+  );
+  bulletin_mail($rinfo['email'], 'You\'ve Been Hired for "'.$rinfo['title'].'"', tpl($options, 'hire_eml.tpl'));
 }
 ?>

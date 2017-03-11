@@ -1,0 +1,30 @@
+#newsbody a {
+  text-decoration: none;
+  color: #000000;
+}
+#newsbody p {
+  display: block;
+  height: 16px;
+  font-size: 12pt;
+  padding: 16px 0;
+  margin: 0;
+}
+#newsbody p.unseen {
+  background-color: #ffffff;
+  font-weight: bold;
+}
+#newsbody p.seen {
+  background-color: #eeeeee;
+  box-shadow: 0px 0px 1px rgba(0,0,0,0.75);
+}
+#newsbody p.icon {
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+  background-position: 8px 8px;
+}
+#newsbody p.iconhired {
+  background-image: url('../img/check_blank.png');
+}
+#newsbody p.iconapplied {
+  background-image: url('../img/star_empty.png');
+}

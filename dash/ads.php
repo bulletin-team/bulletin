@@ -12,10 +12,14 @@ $row = $result->fetch_assoc();
 $result->free();
 ?>
       <div id="fulljob">
+<?php
+if ($b_user['type'] == 'EMPLOYER' && $b_user['id'] == $row['uid']) echo '        <a href="#" class="adtrash" data-adid="'.$row['id'].'"></a>'.PHP_EOL;
+?>
         <div id="fjheader">
           <h3 id="fjhtitle"><a href="ads.php?id=<?=$row['id'];?>"><?=htmlentities($row['title']);?></a></h3>
           <p id="fjhpay">Pays $<?=number_format($row['pay'], 2);?></p>
-          <p id="fjhdetails"><?=htmlentities($row['location']);?> at <?=date('g:i a', intval($row['time'])).' on '.date('M j, Y', intval($row['time']));?></p>
+          <p id="fjhdetails"><?=htmlentities($row['location']);?></p>
+          <p id="fjhtime"><?=date('g:i a', intval($row['time'])).' on '.date('M j, Y', intval($row['time']));?></p>
         </div>
         <div id="fjbody">
           <p><?=htmlentities($row['description']);?></p>

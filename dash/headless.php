@@ -23,7 +23,11 @@ if (isset($_GET['clicks'])) {
   $result->free();
   $db->query('UPDATE responses, ads SET responses.matched = 1, ads.closed = 1 WHERE ads.id = responses.adid AND responses.id = '.intval($_GET['hire'])) or die('ERR');
   if ($db->affected_rows < 1) die('NOK');
-  hire_trigger(intval($_GET['hire']);
+  hire_trigger(intval($_GET['hire']));
+  die('OK');
+} else if (isset($_GET['rmad'])) {
+  $db->query('DELETE FROM ads WHERE ads.id = '.intval($_GET['rmad']).' AND ads.uid = '.$b_user['id']) or die('ERR');
+  if ($db->affected_rows < 1) die('NOK');
   die('OK');
 }
 $db->close();

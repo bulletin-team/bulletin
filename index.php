@@ -73,10 +73,9 @@ require('inc/common.php');
           </div>
           <div id="footer">
             <p id="copy"><a href="#cover">Top</a>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Copyright &copy; 2016 Bulletin Team</p>
-          </div>
-    </div>
- 
+          </div> 
         </div>
       </div>
+    </div>
  </body>
 </html>

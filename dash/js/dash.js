@@ -25,12 +25,20 @@ function acbtn (e) {
     $(this).parents().filter('.job').hide(250);
     $.get('headless.php?hire='+$(this).attr('data-rid'), function (data) {
       if (data == 'OK') {
-        window.alert('This application has been approved for hire. You can rate your experience with this candidate under the \'Rate\' tab.');
         window.location.href = '/dash/rate.php';
       } else {
         window.alert('We\'ve experienced an error trying to approve this application. Please try again another time.');
         window.location.href = '/dash/';
       }
+    });
+  }
+}
+function trashbtn (e) {
+  e.preventDefault();
+  if (window.confirm('Permanently delete this ad?')) {
+    $.get('headless.php?rmad='+$(this).attr('data-adid'), function (data) {
+      if (data == 'OK') window.location.href = '/dash/';
+      else window.alert('An error was encountered while attempting to delete this ad.');
     });
   }
 }
@@ -55,5 +63,6 @@ $(function() {
   $('.jobxbtn').click(jxbtn);
   $('.appxbtn').click(axbtn);
   $('.appcbtn').click(acbtn);
+  $('.adtrash').click(trashbtn);
   serveratings($('.ratingdata'));
 });
