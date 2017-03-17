@@ -1,5 +1,6 @@
 <?php
 require('inc/common.php');
+fatal('We\'re sorry but we\'re unable to permit registrations at this time. If you hold on to your activation email, your account can be activated when registaration is opened again.');
 
 $db = new bdb() or fatal($db-error);
 $uid = intval($_GET['uid']);
