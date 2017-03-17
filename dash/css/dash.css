@@ -123,6 +123,11 @@ body {
   text-decoration: none;
   font-weight: bold;
 }
+.jobpay a {
+  color: #000000;
+  text-decoration: none;
+  font-style: italic;
+}
 .jobblurb {
   padding: 1em;
   margin: 1em 1em 0 1em !important;
@@ -378,4 +383,16 @@ h3 a:hover, h4 a:hover {
 }
 .adtrash:hover {
   background-image: url('../img/trash_hover.png');
+}
+.rate-widget {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.ratebtn {
+  margin: auto 5px;
+  cursor: pointer;
+}
+.ratebtn:hover {
+  background-image: url('../img/star_given.png');
 }

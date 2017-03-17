@@ -19,6 +19,24 @@ function typestr ($type) {
 function rating_format ($rating = null, $typestr = 'Employer') {
   return '<span class="ratingdata" data-rating="'.(is_null($rating) ? 'undef' : number_format($rating, 1)).'"></span>';
 }
+function draw_norate_p () {
+?>
+      <div class="job">
+        <p class="jobtitle"><a href="post.php">Nothing to Rate Yet!</a></p>
+        <p class="jobpay">Post another ad. It's FREE!</p>
+        <p class="jobblurb">None of your ads have received a response since you last visited. In the meantime, be sure to post more to maximize your exposure.<br /><a href="post.php">Post an ad!</a></p>
+      </div>
+<?php
+}
+function draw_norate_s () {
+?>
+      <div class="job">
+        <p class="jobtitle"><a href="post.php">Nothing to Rate Yet!</a></p>
+        <p class="jobpay">Apply to more ads. It's FREE!</p>
+        <p class="jobblurb">None of your applications have received a response since you last visited. In the meantime, be sure to reply to more job postings maximize your exposure.<br /><a href="dash/">Browse ads!</a></p>
+      </div>
+<?php
+}
 function draw_noads () {
 ?>
       <div class="job">
@@ -34,6 +52,16 @@ function draw_noapps () {
         <p class="jobtitle"><a href="post.php">No Applications Yet!</a></p>
         <p class="jobpay">Post another ad. It's FREE!</p>
         <p class="jobblurb">This ad hasn't received any responses yet. In the meantime, be sure to post more to maximize your exposure.<br /><a href="post.php">Post an ad!</a></p>
+      </div>
+<?php
+}
+function draw_rate ($row) {
+?>
+      <div class="job">
+        <p class="jobtitle"><a href="ads.php?id=<?=$row['adid'];?>"><?=htmlentities($row['title']);?></a></p>
+        <p class="jobpay">Provided by <a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
+        <p class="jobdate"><?=date('M j, Y', intval($row['time']));?></p>
+        <div class="jobblurb"><div class="rate-widget" data-uid="<?=$row['uid'];?>" data-jid="<?=$row['adid'];?>" data-rating="<?=is_null($row['rating']) ? 'undef' : number_format($row['rating'], 1);?>"></div></div>
       </div>
 <?php
 }

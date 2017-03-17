@@ -15,7 +15,7 @@ $result->free();
       </form>
 <?php
 $catstr = empty($_GET['cat']) ? '' : ' AND cat = '.intval($_GET['cat']);
-$result = $db->query('SELECT ads.*, categories.cat_name, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads LEFT JOIN categories ON ads.cat = categories.id LEFT JOIN ratings ON ads.uid = ratings.rated WHERE ads.closed = 0'.$catstr.' GROUP BY ads.id LIMIT 0, '.$b_config['ads_per_page']) or fatal($db->error);
+$result = $db->query('SELECT ads.*, categories.cat_name, SUM(ratings.stars) / COUNT(ratings.stars) AS rating FROM ads LEFT JOIN categories ON ads.cat = categories.id LEFT JOIN ratings ON ads.uid = ratings.rated WHERE ads.closed = 0'.$catstr.' GROUP BY ads.id ORDER BY ads.id DESC LIMIT 0, '.$b_config['ads_per_page']) or fatal($db->error);
 while ($row = $result->fetch_assoc()) draw_ad($row);
 $result->free();
 require('footer.php');

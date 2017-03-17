@@ -29,6 +29,16 @@ if (isset($_GET['clicks'])) {
   $db->query('DELETE FROM ads WHERE ads.id = '.intval($_GET['rmad']).' AND ads.uid = '.$b_user['id']) or die('ERR');
   if ($db->affected_rows < 1) die('NOK');
   die('OK');
+} else if (isset($_GET['rate'])) {
+  $uid = intval($_GET['rate']);
+  $jid = intval($_GET['jid']);
+  $val = intval($_GET['val']);
+  if ($uid < 1 || $jid < 1 || $val < 1) die('NOK');
+  $result = $db->query('SELECT ads.id FROM ads INNER JOIN responses ON responses.adid = ads.id AND responses.matched = 1 INNER JOIN users ON users.id = responses.uid LEFT JOIN ratings ON ratings.rated = users.id WHERE ads.id = '.$jid.' AND (ads.uid = '.$b_user['id'].' OR responses.uid = '.$b_user['id'].') AND NOT EXISTS (SELECT ratings.id FROM ratings WHERE ratings.rated = responses.uid AND ratings.job = ads.id AND ratings.rater = '.$b_user['id'].') GROUP BY responses.id LIMIT 1') or die('ERR');
+  if ($result->num_rows < 1) die('NOK');
+  $db->query('INSERT INTO ratings (rated, rater, job, stars) VALUES ('.$uid.', '.$b_user['id'].', '.$jid.', '.$val.')') or die('ERR');
+  if ($db->affected_rows < 1) die('NOK');
+  die('OK');
 }
 $db->close();
 ?>
