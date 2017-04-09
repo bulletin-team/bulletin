@@ -384,15 +384,26 @@ h3 a:hover, h4 a:hover {
 .adtrash:hover {
   background-image: url('../img/trash_hover.png');
 }
-.rate-widget {
+.rate-widget .stars {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+.rate-widget .typereview {
+  margin: 0.25em auto;
+  width: 400px;
+  height: 120px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  padding: 5px;
+  resize: none;
+}
 .ratebtn {
   margin: auto 5px;
   cursor: pointer;
+  height: 48px;
 }
 .ratebtn:hover {
   background-image: url('../img/star_given.png');
+  background-size: contain;
 }

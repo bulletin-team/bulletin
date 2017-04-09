@@ -73,7 +73,7 @@ var bullechat = {
   },
   socket: {
     sockfd: null,
-    server: 'chat.bulletinalpha.tk',
+    server: 'chat.bulletinusa.com',
     port: 2442,
     send: function (data) {
       if (!bullechat.socket.sockfd) return false;

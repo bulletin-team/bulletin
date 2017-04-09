@@ -62,18 +62,19 @@ function ratewidget (idx, me) {
   var $me = $(me);
   var rating = parseFloat($me.attr('data-rating'));
   if (!rating) rating = 0;
-  var html = '';
+  var html = '<div><textarea class="typereview" maxlength="250" placeholder="Reflect on your experience (250 characters)..."></textarea></div><div class="stars">';
   for (var i = 1; i <= rating; i++) html += '<img class="ratebtn" src="img/star_given.png" alt="Full Star" />';
   if (rating-Math.floor(rating) >= 0.5) html += '<img class="ratebtn" src="img/star_half.png" alt="Half Star" />'
   i += Math.round(rating-Math.floor(rating));
   for (; i <= 5; i++) html += '<img class="ratebtn" src="img/star_empty.png" alt="No Star" />';
+  html += '</html>';
   $me.html(html);
   $.each($me.find('.ratebtn'), function (idx, obj) {
     $(obj).click(function (e) {
       e.preventDefault();
       console.log('Clicked '+(idx+1));
-      $.get('headless.php?rate='+$me.attr('data-uid')+'&jid='+$me.attr('data-jid')+'&val='+(idx+1), function (data) {
-        if (data == 'OK') $me.parents().filter('.job').hide(250);
+      $.get('headless.php?rate='+$me.attr('data-uid')+'&jid='+$me.attr('data-jid')+'&val='+(idx+1)+'&txt='+$me.find('.typereview').val(), function (data) {
+        if (data == 'OK') window.location.reload();
         else window.alert('The server encountered an error submitting your rating. We\'re sorry for the inconvenience.');
       });
     });

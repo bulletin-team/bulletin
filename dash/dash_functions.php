@@ -22,18 +22,18 @@ function rating_format ($rating = null, $typestr = 'Employer') {
 function draw_norate_p () {
 ?>
       <div class="job">
-        <p class="jobtitle"><a href="post.php">Nothing to Rate Yet!</a></p>
+        <p class="jobtitle"><a href="post.php">You have no jobs yet!</a></p>
         <p class="jobpay">Post another ad. It's FREE!</p>
-        <p class="jobblurb">None of your ads have received a response since you last visited. In the meantime, be sure to post more to maximize your exposure.<br /><a href="post.php">Post an ad!</a></p>
+        <p class="jobblurb">You haven&apos;t approved any applications yet. Be sure to post often to maximize your exposure.<br /><a href="post.php">Post an ad!</a></p>
       </div>
 <?php
 }
 function draw_norate_s () {
 ?>
       <div class="job">
-        <p class="jobtitle"><a href="post.php">Nothing to Rate Yet!</a></p>
+        <p class="jobtitle"><a href="post.php">You have no jobs yet!</a></p>
         <p class="jobpay">Apply to more ads. It's FREE!</p>
-        <p class="jobblurb">None of your applications have received a response since you last visited. In the meantime, be sure to reply to more job postings maximize your exposure.<br /><a href="dash/">Browse ads!</a></p>
+        <p class="jobblurb">None of your applications have been approved yet. In the meantime, be sure to reply to more job postings maximize your exposure.<br /><a href="dash/">Browse ads!</a></p>
       </div>
 <?php
 }
@@ -55,13 +55,27 @@ function draw_noapps () {
       </div>
 <?php
 }
-function draw_rate ($row) {
+function draw_rate ($row, $review) {
 ?>
-      <div class="job">
+      <div class="job<?=is_null($review)?' unrated':' rated';?>">
+        <p class="israted"><?=is_null($review)?'Job Pending':'Job Complete';?></p>
         <p class="jobtitle"><a href="ads.php?id=<?=$row['adid'];?>"><?=htmlentities($row['title']);?></a></p>
         <p class="jobpay">Provided by <a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
         <p class="jobdate"><?=date('M j, Y', intval($row['time']));?></p>
+<?php
+  if (!is_null($review)) {
+?>
+        <div class="jobblurb">
+          <?=rating_format($review['stars'], typestr($row['type']));?>
+          <div class="ratecomment"><?=is_null($review['comment'])?'<em>No comment.</em>':htmlentities($review['comment']);?></div>
+        </div>
+<?php
+  } else {
+?>
         <div class="jobblurb"><div class="rate-widget" data-uid="<?=$row['uid'];?>" data-jid="<?=$row['adid'];?>" data-rating="<?=is_null($row['rating']) ? 'undef' : number_format($row['rating'], 1);?>"></div></div>
+<?php
+  }
+?>
       </div>
 <?php
 }
