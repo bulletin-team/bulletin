@@ -2,32 +2,21 @@
 require('inc/common.php');
 
 if ($b_user['id'] > 0) loggedin();
-if (!empty($_GET['key']) && !empty($_GET['id'])) {
-  $db = new bdb() or fatal('No database connection!');
-  $result = $db->query('SELECT id FROM users WHERE id = '.intval($_GET['id']).' AND session = \''.bulletin_hash($_GET['key']).'\' AND active = 1 LIMIT 1') or fatal($db->error);
-  if ($result->num_rows < 1) {
-    $result->free();
-    $db->close();
-    fatal('Invalid information provided.');
-  }
-  $result->free();
-  $db->close();
-  setcookie($b_config['c_name'], intval($_GET['id']).';'.$_GET['key'], 0, $b_config['c_path'], $b_config['c_dom'], $b_config['c_sec'], $b_config['c_http']);
-  loggedin(); 
-} else if (!empty($_POST['email'])) {
+if (!empty($_POST['email'])) {
   $db = new bdb() or fatal('No database connection!');
   $token = uniqid('fp', true);
   $result = $db->query('SELECT id FROM users WHERE email = \''.$db->escape_string($_POST['email']).'\'') or fatal($db->error);
   if ($result->num_rows > 0) {
-    $db->query('UPDATE users SET session = \''.bulletin_hash($token).'\' WHERE email = \''.$db->escape_string($_POST['email']).'\'') or fatal($db->error);
-    if ($db->affected_rows < 1) fatal('Could not affect the database');
     $row = $result->fetch_assoc();
+    $newpass = pwgen(10);
+    $db->query('UPDATE users SET password = \''.bulletin_hash($newpass).'\' WHERE id = '.$row['id']) or fatal($db->error);
+    if ($db->affected_rows < 1) fatal('Could not affect the database');
     $result->free();
     $db->close();
     bulletin_mail($_POST['email'], 'Recover Your Bulletin Account', tpl(array(
-      'vars' => 'id='.$row['id'].'&key='.$token,
+      'newpass' => htmlentities($newpass),
 ), 'forgot.tpl')) or fatal('Could not send out the recovery email, we apologize for the inconvenience.');
-    fatal('A recovery email has been sent to the address you supplied. You can use this email to access your account, and from there change your password.');
+    fatal('A recovery email has been sent to the address you supplied. You can use this email to access your account, and from there change your password.', $b_config['base_url'].'login.php');
   } else {
     $result->free();
     $db->close();

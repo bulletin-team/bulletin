@@ -84,4 +84,15 @@ function bulletin_mail ($to, $subject, $body) {
     return 0;
   }
 }
+
+function pwgen ($len) {
+  $alpha = 'abcdefghijklmnopqrstuvwxyz';
+  $alpha .= strtoupper($alpha);
+  $alpha .= '0123456789';
+  $pass = '';
+  $alen = strlen($alpha);
+  for ($i = 0; $i < $len; $i++)
+    $pass .= $alpha[mt_rand(0, $alen-1)];
+  return $pass;
+}
 ?>
