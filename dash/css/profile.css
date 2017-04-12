@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 #profile input[type=submit]:hover, #profile input[type=button]:hover, #profile button:hover {
-  background-color: #fb7700;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
 }
 #profile textarea {
   margin: 0.25em auto;
@@ -93,4 +93,39 @@
 }
 #profile a:hover {
   color: #fb7700;
+}
+#proreviews {
+  text-align: center;
+  border-top: 1px solid #eeeeee;
+  padding-top: 1em;
+}
+.review {
+  text-align: left;
+  margin: 1em;
+}
+#profile .revname a, #profile .revname a:hover {
+  color: #000000;
+  font-weight: bold;
+}
+.revpic img {
+  width: 64px;
+  height: 64px;
+}
+#profile .revjob a, #profile .revjob a:hover {
+  color: #000000;
+  font-style: italic;
+}
+.reviewleft {
+  float: left;
+  clear: both;
+  width: 156px;
+  word-break: break-word;
+  overflow-x: hidden;
+  margin-right: 1em;
+}
+.reviewright {
+  min-height: 108px;
+}
+#proreviews .revstars {
+  margin-bottom: 0.5em;
 }

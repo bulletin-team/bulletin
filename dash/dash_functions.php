@@ -67,7 +67,7 @@ function draw_rate ($row, $review) {
 ?>
         <div class="jobblurb">
           <?=rating_format($review['stars'], typestr($row['type']));?>
-          <div class="ratecomment"><?=is_null($review['comment'])?'<em>No comment.</em>':htmlentities($review['comment']);?></div>
+          <div class="ratecomment"><strong>You said:</strong><br /><?=is_null($review['comment'])?'<em>No comment.</em>':htmlentities($review['comment']);?></div>
         </div>
 <?php
   } else {

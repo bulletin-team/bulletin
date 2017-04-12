@@ -51,6 +51,30 @@ $phonelink = '+'.preg_replace('/[^0-9]/', '', $user['phone']);
             <p><a href="#" onclick="bullechat.gui.create('<?=htmlentities($user['email'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
           </div>
         </div>
+        <div id="proreviews">
+          <h3>Past Reviews</h3>
+<?php
+$result = $db->query('SELECT ratings.stars, ratings.comment, users.id AS uid, users.name, users.picture, ads.id AS adid, ads.title FROM ratings INNER JOIN users ON users.id = ratings.rater INNER JOIN ads ON ads.id = ratings.job WHERE ratings.rated = '.$user['id']) or dash_fatal($db->error);
+echo '          <p>Based on <strong>'.$result->num_rows.'</strong> jobs completed.';
+if ($result->num_rows < 1) echo '          <p><em>This user has never been reviewed.</em></p>';
+while ($row = $result->fetch_assoc()) {
+?>
+          <div class="review">
+            <div class="reviewleft">
+              <p class="revname"><a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
+              <p class="revpic"><img src="uimg/<?=is_null($row['picture']) ? 'default.png' : intval($row['picture']).'.png';?>" alt="Profile Picture" /></p>
+              <p class="revjob">Based on <a href="ads.php?id=<?=$row['adid'];?>"><?=htmlentities($row['title']);?></a></p>
+            </div>
+            <div class="reviewright">
+              <p class="revstars"><?=rating_format($row['stars'], ' Review');?></p>
+              <p class="comment"><?=is_null($row['comment']) ? '<em>No comment provided.</em>' : htmlentities($row['comment']);?></p>
+            </div>
+          </div>
+<?php
+}
+$result->free();
+?>
+        </div>
       </div>
 <?php
 } else if (!empty($_POST['chprofile'])) {

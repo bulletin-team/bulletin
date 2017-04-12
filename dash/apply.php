@@ -9,10 +9,10 @@ if ($adid < 1) fatal('No ad ID has been provided. You must have reached this pag
 $title = 'Apply / Bulletin';
 require('header.php');
 if (!empty($_POST['apply'])) {
-  $result = $db->query('SELECT id FROM responses WHERE adid = '.$adid.' AND uid = '.$b_user['id'].' LIMIT 1') or dash_fatal($db->error);
+  $result = $db->query('SELECT id FROM responses WHERE adid = '.$adid.' AND (uid = '.$b_user['id'].' OR matched = 1) LIMIT 1') or dash_fatal($db->error);
   if ($result->num_rows > 0) {
     $result->free();
-    dash_fatal('You have already applied to this ad!', $b_config['base_url'].'dash/');
+    dash_fatal('You have already applied to this ad or the provider has already selected someone for the task!', $b_config['base_url'].'dash/');
   }
   $result->free();
   $db->query('INSERT INTO responses (adid, uid, comment) VALUES ('.$adid.', '.$b_user['id'].', \''.$db->escape_string($_POST['comments']).'\')') or dash_fatal($db->error);
@@ -48,7 +48,7 @@ else
           <div id="fjfright">
             <form id="cform" action="<?=htmlentities($_SERVER['REQUEST_URI']);?>" method="post">
               <h4>Comments (Optional)</h4>
-              <p><textarea name="comments"></textarea></p>
+              <p><textarea name="comments" placeholder="This could relate to your specific qualifications, convenience, etc."></textarea></p>
               <p><input id="inpapply" type="submit" name="apply" value="Apply to Ad" /></p>
             </form>
           </div>

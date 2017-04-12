@@ -105,6 +105,7 @@ body {
   text-align: center;
   font-size: 10pt;
   margin: 0.33em 0;
+  color: #eeeeee;
 }
 .job p, .job h1 {
   margin: 0;
@@ -183,10 +184,15 @@ body {
 }
 #fjheader {
   text-align: center;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #eeeeee;
   margin-bottom: 1em;
 }
 #fjheader p, #fjheader h3 {
   margin: 0;
+}
+#fjhtitle {
+  font-size: 18pt;
 }
 h3 a, h4 a {
   color: #000000 !important;
@@ -197,7 +203,6 @@ h3 a:hover, h4 a:hover {
   text-decoration: none;
 }
 #fjbody {
-  border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
   text-align: center;
 }
@@ -207,12 +212,15 @@ h3 a:hover, h4 a:hover {
 #fjfooter h4 {
   margin: 1em 0 0 0;
 }
+#fjfleft h4 {
+  text-align: center;
+}
 #fjfooter p {
   margin: 0;
 }
 #fjfleft {
   float: left;
-  margin-right: 0.5em;
+  margin-right: 3em;
 }
 #fjfleft img {
   margin-bottom: 0.5em;
@@ -221,15 +229,20 @@ h3 a:hover, h4 a:hover {
 }
 #fjfleft p {
   margin: 0;
-  font-size: 14pt;
   text-align: center;
+}
+#fjfleft #ename {
+  font-size: 14pt;
 }
 #ename a, #ename a:hover {
   color: #000000 !important;
   font-weight: bold;
 }
 #fjfright {
-  text-align: center;
+  text-align: left;
+}
+#fjfright h4 {
+  font-size: 14pt;
 }
 #fulljob a, .errbox a {
   text-decoration: none;
@@ -249,7 +262,7 @@ h3 a:hover, h4 a:hover {
   border-radius: 5px;
 }
 .fjsettings #fjbody {
-  padding: 1em 0 0.75em 0;
+  padding: 0 0 0.75em 0;
 }
 .fjsettings #fjbody h4 {
   margin: 0 auto 0.25em auto;
@@ -292,7 +305,7 @@ h3 a:hover, h4 a:hover {
   cursor: pointer;
 }
 .fjsettings input[type=submit]:hover {
-  background-color: #fb7700;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
 }
 .fjsettings textarea {
   margin: 0.5em auto;
@@ -372,6 +385,9 @@ h3 a:hover, h4 a:hover {
   color: #000000;
   margin-left: 10px;
 }
+#viewform p {
+  color: #eeeeee;
+}
 .adtrash {
   display: block;
   width: 32px;
@@ -406,4 +422,29 @@ h3 a:hover, h4 a:hover {
 .ratebtn:hover {
   background-image: url('../img/star_given.png');
   background-size: contain;
+}
+#eapply {
+  margin: 1.5em 0 0 0;
+}
+#eapply a {
+  background-color: #fb4d00;
+  color: #ffffff;
+  padding: 10px 10px 8px;
+  border-style: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12pt;
+}
+#eapply a:hover {
+  color: #ffffff;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+}
+#fjdesc {
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  margin: 1em 0;
+  padding: 1em 0;
+}
+#fjdesc p, #fjdesc h4 {
+  margin: 0;
 }
