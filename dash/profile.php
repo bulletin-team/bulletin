@@ -21,12 +21,7 @@ if ($public) {
         </div>
         <div id="proleft">
           <div id="propic">
-<?php
-  if (is_null($user['picture']))
-    echo '            <img src="uimg/default.png" alt="Profile Picture" />'.PHP_EOL;
-  else
-    echo '            <img src="uimg/'.$user['picture'].'.png" alt="Profile Picture" />'.PHP_EOL;
-?>
+            <img src="<?=picture_format($user['picture']);?>" alt="Profile Picture" />
           </div>
         </div>
         <div id="proright">
@@ -115,6 +110,10 @@ $result->free();
           <h3 id="protitle"><a href="<?=$_SERVER['REQUEST_URI'];?>"><?=htmlentities($user['name']);?></a></h3>
           <p id="prostars"><?=rating_format($user['rating'], typestr($user['type']));?></p>
         </div>
+<?php
+  if (is_null($b_user['picture']) || is_null($b_user['address']))
+    echo '        <p id="prowarning">For safety reasons, you will have to complete your profile before you can access the rest of Bulletin.</p>'.PHP_EOL;
+?>
         <form action="<?=$_SERVER['REQUEST_URI'];?>" method="post" enctype="multipart/form-data">
           <div id="proleft">
             <h4>Profile Picture</h4>
@@ -132,7 +131,12 @@ $result->free();
           <div id="proright">
             <div id="probody">
               <h4>Include a Bio</h4>
-              <p><textarea id="inpbio" name="bio" placeholder="No bio included."><?=htmlentities($user['bio']);?></textarea></p>
+<?php
+  if ($b_user['type'] == 'EMPLOYEE') $bphtxt = 'Type a bio (optional). Include your qualifications, work experience, certifications, etc.';
+  else if ($b_user['type'] == 'EMPLOYER') $bphtxt = 'Type a bio (optional). Let your workers get to know you a little bit.';
+  else $bphtxt = 'Type a bio (optional).';
+?>
+              <p><textarea id="inpbio" name="bio" placeholder="<?=htmlentities($bphtxt);?>"><?=htmlentities($user['bio']);?></textarea></p>
             </div>
             <div id="profoot">
               <h4>Basic Information</h4>

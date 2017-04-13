@@ -21,12 +21,7 @@ if ($b_user['type'] == 'EMPLOYER' && $b_user['id'] == $row['uid']) echo '       
         </div>
         <div id="fjfooter">
           <div id="fjfleft">
-<?php
-if (is_null($row['picture']))
-  echo '            <img id="propic" src="uimg/default.png" alt="Profile Picture" />'.PHP_EOL;
-else
-  echo '            <img id="propic" src="uimg/'.intval($row['picture']).'.png" alt="Profile Picture" />'.PHP_EOL;
-?>
+            <img id="propic" src="<?=picture_format($row['picture']);?>" alt="Profile Picture" />
             <p id="ename"><a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
             <p id="erating"><?=rating_format($row['rating']);?></p>
             <h4>Contact Information</h4>

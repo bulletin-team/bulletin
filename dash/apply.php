@@ -36,12 +36,7 @@ $result->free();
         </div>
         <div id="fjfooter">
           <div id="fjfleft">
-<?php
-if (is_null($row['picture']))
-  echo '            <img id="propic" src="uimg/default.png" alt="Profile Picture" />'.PHP_EOL;
-else
-  echo '            <img id="propic" src="uimg/'.intval($row['picture']).'.png" alt="Profile Picture" />'.PHP_EOL;
-?>
+            <img id="propic" src="<?=picture_format($row['picture']);?>" alt="Profile Picture" />
             <p id="ename"><?=htmlentities($row['name']);?></p>
             <p id="erating"><?=rating_format($row['rating']);?></p>
           </div>

@@ -43,8 +43,7 @@ function fatal ($msg = null, $link = null, $label = null) {
 }
 
 function gohome () {
-  global $b_config;
-  redirect($b_config['base_url']);
+  l_redirect('');
 }
 
 function goin () {

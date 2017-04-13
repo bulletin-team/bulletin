@@ -19,6 +19,9 @@ function typestr ($type) {
 function rating_format ($rating = null, $typestr = 'Employer') {
   return '<span class="ratingdata" data-rating="'.(is_null($rating) ? 'undef' : number_format($rating, 1)).'"></span>';
 }
+function picture_format ($picstr = null) {
+  return is_null($picstr) ? 'uimg/default.png' : 'uimg/'.htmlentities($picstr).'.png';
+} 
 function draw_norate_p () {
 ?>
       <div class="job">
