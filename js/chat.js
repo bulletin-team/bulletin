@@ -29,7 +29,7 @@ var bullechat = {
       $child.data('body', $chbody);
       $child.append($('<input>', {'type': 'text', 'class': 'chinput', 'placeholder': 'press <enter> to send'}).keypress(function (e) {
         if (e.which == 13) {
-          var $item = bullechat.gui.addline($child, $(this).val(), 'You');
+          var $item = bullechat.gui.addline($child, $(this).val(), 'You', false);
           if (!bullechat.socket.sendto(user, $(this).val())) $item.addClass('chfailed').click(function (e) {
               $(this).hide(750);
             });
@@ -51,10 +51,10 @@ var bullechat = {
       $('body').append($child);
       bullechat.gui.updown($child);
     },
-    addline: function ($elem, msg, nick) {
+    addline: function ($elem, msg, nick, recvd) {
       var $item;
       if (nick) {
-        $item = $('<li/>').append($('<span/>',{'class':'chnick'}).text(bullechat.nickfmt(nick))).append(document.createTextNode(msg));
+        $item = $('<li/>', {'class': (recvd ? 'recvd' : 'sent')}).text(msg);
       } else {
         $item = $('<li/>', {'class': 'chspecial'}).text(msg);
       }
@@ -95,9 +95,9 @@ var bullechat = {
     message: function (e) {
       var data = JSON.parse(e.data);
       if (!data || !data['uname']) return;
-      if (!bullechat.gui.$windows[data['uname']]) bullechat.gui.create(data['uname']);
+      if (!bullechat.gui.$windows[data['uname']]) bullechat.gui.create(data['uname'], data['nick']);
       bullechat.gui.addline(bullechat.gui.$windows[data['uname']],
-                            data['msg'], data['nick']);
+                            data['msg'], data['nick'], true);
     },
     start: function () {
       if (window.WebSocket) {

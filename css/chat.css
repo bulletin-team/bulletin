@@ -1,12 +1,13 @@
-.chexp {
-  bottom: 0px !important;
-}
 .chshr {
-  bottom: -232px !important;
+  height: 24px !important;
+}
+.chshr .chlist, .chshr .chinput {
+  display: none;
 }
 .chwin {
   z-index: 2;
   position: fixed;
+  bottom: 0px;
   right: 0px;
   height: 256px;
   width: 400px;
@@ -27,7 +28,7 @@
   padding: 0.25em 10px 0px 10px;
   border-radius: 4px 0px 0px 0px;
   font-weight: bold;
-  font-size: 12pt;
+  font-size: 11pt;
   cursor: pointer;
 }
 .chlist {
@@ -35,27 +36,23 @@
   top: 24px;
   left: 0px;
   width: calc(100% - 10px);
-  height: 205px;
+  height: 200px;
   list-style: none;
   padding: 0px 5px 0px 5px;
   margin: 0px;
   border-style: solid;
-  border-width: 1px 0px 1px 0px;
-  border-color: #aaaaaa;
-}
-.chlist .chnick {
-  margin-right: .2em;
-  font-weight: bold;
-}
-.chlist li.chfailed {
-  color: #777777;
-  cursor: pointer;
+  border-width: 0px 0px 1px 0px;
+  border-color: #eeeeee;
 }
 .chinput {
   position: absolute;
-  bottom: 3px;
+  bottom: 2px;
   left: 3px;
-  width: calc(100% - 8px);
+  width: calc(100% - 27px);
+  border: none;
+  border-radius: 10px 10px 0px 10px;
+  padding: 5px 10px;
+  background-color: #eeeeee;
 }
 .chshrbtn {
   width: 16px;
@@ -79,4 +76,30 @@
 }
 .chshrbtn:hover, .chxbtn:hover {
   background-color: rgba(0, 0, 0, 0.25);
+}
+.chlist li {
+  padding: 5px 10px;
+  margin: 2px 0;
+  border-radius: 10px;
+  display: flex;
+  clear: both;
+  cursor: default;
+}
+.chlist li.chfailed {
+  color: #777777;
+  cursor: pointer;
+}
+.chlist li.sent {
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  float: right;
+  background-color: #eeeeee;
+  border-bottom-right-radius: 0px;
+}
+.chlist li.recvd, .chlist li.chfailed {
+  flex-direction: row;
+  flex-wrap: wrap;
+  float: left;
+  background-color: #fc824c;
+  border-bottom-left-radius: 0px;
 }
