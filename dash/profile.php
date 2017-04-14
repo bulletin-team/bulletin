@@ -43,7 +43,7 @@ $phonelink = '+'.preg_replace('/[^0-9]/', '', $user['phone']);
             <p>Zipcode: <?=htmlentities($user['zipcode']);?></p>
             <br />
             <h4>Chat</h4>
-            <p><a href="#" onclick="bullechat.gui.create('<?=htmlentities($user['email'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
+            <p><a href="#" onclick="bullechat.gui.create('<?=htmlentities($user['email'], ENT_HTML401 | ENT_QUOTES).'\', \''.htmlentities($user['name'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
           </div>
         </div>
         <div id="proreviews">

@@ -30,7 +30,7 @@ if ($b_user['type'] == 'EMPLOYER' && $b_user['id'] == $row['uid']) echo '       
 $phonelink = '+'.preg_replace('/[^0-9]/', '', $row['phone']);
 ?>
             <p id="ephone"><a href="tel:<?=$phonelink;?>"><?=htmlentities($row['phone']);?></a></p>
-            <p id="echat"><a href="#" onclick="bullechat.gui.create('<?=htmlentities($row['email'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
+            <p id="echat"><a href="#" onclick="bullechat.gui.create('<?=htmlentities($row['email'], ENT_HTML401 | ENT_QUOTES).'\', \''.htmlentities($row['name'], ENT_HTML401 | ENT_QUOTES);?>'); return false;">Open a Chat</a></p>
           </div>
           <div id="fjfright">
             <h4>Job Details</h4>
