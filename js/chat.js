@@ -59,6 +59,7 @@ var bullechat = {
         $item = $('<li/>', {'class': 'chspecial'}).text(msg);
       }
       $elem.data('body').append($item);
+      $elem.data('body').animate({scrollTop: $elem.data('body').scrollHeight}, 250);
       return $item;
     },
     end: function () {
