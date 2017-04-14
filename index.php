@@ -64,7 +64,7 @@ require('inc/common.php');
               </div>
               <div class="bubble rbubble">
                 <p class="bubblehead">Save Some Money</p>
-                <p>We connect you with student workers as an alternative to expensive professionals for unskilled tasks. Each ad costs a one-time fee and we leave it up to you to pay the worker.</p>
+                <p>We connect you with student workers as an alternative to expensive professionals for unskilled tasks. It&apos;s free to post an ad and we leave it up to you to pay the worker.</p>
               </div>
             </div>
             <a href="/signup.php?t=1">
