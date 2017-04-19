@@ -169,4 +169,16 @@ function hire_trigger ($rid) {
   );
   bulletin_mail($rinfo['email'], 'You\'ve Been Hired for "'.$rinfo['title'].'"', tpl($options, 'hire_eml.tpl'));
 }
+function geolocate ($addr, $zip) {
+  $apireturn = json_decode(file_get_contents('https://maps.google.com/maps/api/geocode/json?sensor=false&address='.urlencode($addr.' '.$zip)), true);
+  if ($apireturn['status'] != 'OK') return false;
+  $latlong = $apireturn['results']['geometry']['location'];
+  return array($latlong['lat'], $latlong['lng']);
+}
+function geodistance ($pt1, $pt2) {
+  
+  $a = pow(sin(deg2rad($pt2[0]-$pt1[0])), 2)+cos(deg2rad($pt1[0]))*cos($pt2[0])*pow(sin(deg2rad($pt2[1]-$pt1[1])/2), 2);
+  $b = 2*atan2(sqrt($a), sqrt(1-$a));
+  return $b*3960;
+}
 ?>

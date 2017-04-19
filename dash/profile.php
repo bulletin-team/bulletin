@@ -74,6 +74,9 @@ $result->free();
 <?php
 } else if (!empty($_POST['chprofile'])) {
   $bio = empty($_POST['bio']) ? 'NULL' : '\''.$db->escape_string($_POST['bio']).'\'';
+  if (!empty($_POST['address'])) {
+    if (!geolocate($_POST['address'], $b_user['zipcode'])) dash_fatal('The address provided is not valid.');
+  }
   $addr = empty($_POST['address']) ? 'NULL' : '\''.$db->escape_string($_POST['address']).'\'';
   $patterns = array(
     'email' => '/^.+@.+\..+$/',
