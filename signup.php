@@ -26,7 +26,11 @@ if (!empty($_POST['signup'])) {
     goto err;
   }
   $db = new bdb();
-  $result = $db->query('SELECT id FROM users WHERE email = \''.$db->escape_string($_POST['email']).'\' LIMIT 1') or fatal($db->error);
+
+  $area = (intval($_POST['phone1'])>0)?intval($_POST['phone1']):intval(substr($_POST['phone1'], 1, -1));
+  $phone = intval($_POST['phone0']).' ('.$area.') '.intval($_POST['phone2']).'-'.intval($_POST['phone3']);
+
+  $result = $db->query('SELECT id FROM users WHERE email = \''.$db->escape_string($_POST['email']).'\' OR phone = \''.$phone.'\' LIMIT 1') or fatal($db->error);
   if ($result->num_rows > 0) {
     $result->free();
     $db->close();
@@ -38,8 +42,6 @@ if (!empty($_POST['signup'])) {
   $stmt = $db->prepare('INSERT INTO users (type, name, email, password, zipcode, phone, session) VALUES (?, ?, ?, ?, ?, ?, ?)') or fatal($db->error);
   $type = intval($_POST['type']) ? 'EMPLOYER' : 'EMPLOYEE';
   $pass = bulletin_hash($_POST['password']);
-  $area = (intval($_POST['phone1'])>0)?intval($_POST['phone1']):intval(substr($_POST['phone1'], 1, -1));
-  $phone = intval($_POST['phone0']).' ('.$area.') '.intval($_POST['phone2']).'-'.intval($_POST['phone3']);
   $sess = uniqid('act', true);
   $stmt->bind_param('sssssss', $type, $_POST['name'], $_POST['email'], $pass, $_POST['zip'], $phone, bulletin_hash($sess));
   $stmt->execute();
