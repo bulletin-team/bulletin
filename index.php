@@ -1,6 +1,5 @@
 <?php
 require('inc/common.php');
-fatal('hi');
 ?>
 <!DOCTYPE html>
 <html>
