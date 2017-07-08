@@ -16,7 +16,7 @@ if (!empty($_POST['email'])) {
     bulletin_mail($_POST['email'], 'Recover Your Bulletin Account', tpl(array(
       'newpass' => htmlentities($newpass),
 ), 'forgot.tpl')) or fatal('Could not send out the recovery email, we apologize for the inconvenience.');
-    fatal('A recovery email has been sent to the address you supplied. You can use this email to access your account, and from there change your password.', $b_config['base_url'].'login.php');
+    fatal('A recovery email has been sent to the address you supplied. You can use this email to restore access to your account.', $b_config['base_url'].'login.php');
   } else {
     $result->free();
     $db->close();
