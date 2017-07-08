@@ -5,7 +5,7 @@ $db->close();
 ?>
     </div>
     <div id="footer">
-      <p id="copy">Copyright &copy; 2016 Bulletin Team</p>
+      <p id="copy"><?=copy_notice();?></p>
     </div>
   </body>
 </html>

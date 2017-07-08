@@ -1,9 +1,13 @@
 <?php
+function copy_notice () {
+  return 'Copyright &copy; 2016-'.date('Y').' Bulletin Team';
+}
 function eml_tpl ($options) {
   return tpl($options, 'eml.tpl');
 }
 function tpl ($options, $file) {
   $tpl_htm = file_get_contents(INCLUDE_PATH.$file);
+  $tpl_htm = str_replace('[copyright]', copy_notice(), $tpl_htm);
   $tpl_htm = preg_replace_callback('/\[tpl:([^\]]*)\]/i',
                 function ($matches) use (&$options) {
                   if (!isset($options[$matches[1]])) return '';

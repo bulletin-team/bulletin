@@ -74,7 +74,7 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
     </div>
     <div class="hr"></div>
     <p class="welcome">Welcome back to Bulletin! :)</p>
-    <p class="copy">Copyright &copy; 2016 Bulletin Team</p>
+    <p class="copy"><?=copy_notice();?></p>
   </body>
 </html>
 <?php

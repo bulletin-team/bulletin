@@ -1,5 +1,6 @@
 <?php
 require('inc/common.php');
+fatal('hi');
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,7 +73,7 @@ require('inc/common.php');
             </a>
           </div>
           <div id="footer">
-            <p id="copy"><a href="#cover">Top</a>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Copyright &copy; 2016 Bulletin Team</p>
+            <p id="copy"><a href="#cover">Top</a>&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;<?=copy_notice();?></p>
           </div> 
         </div>
       </div>

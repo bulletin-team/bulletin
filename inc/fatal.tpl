@@ -18,6 +18,6 @@
         [tpl:label]
       </a>
     </p>
-    <p class="copy">Copyright &copy; 2016 Bulletin Team</p>
+    <p class="copy">[copyright]</p>
   </body>
 </html>
