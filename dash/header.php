@@ -38,6 +38,7 @@ foreach ($navtitles as $k => $title) {
 <?php
 }
 ?>
+        <div class="spacer"></div>
         <div class="navblock">
           <a href="<?=$b_config['base_url'].'dash/profile.php';?>">
             <span class="navspan"><?=htmlentities($b_user['name']);?>&nbsp;&#x25be;</span>
