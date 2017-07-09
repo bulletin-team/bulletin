@@ -407,7 +407,8 @@ h3 a:hover, h4 a:hover {
 }
 .ratebtn:hover {
   background-image: url('../img/star_given.png');
-  background-size: contain;
+  background-size: 56px 56px;
+  background-position: center;
 }
 #eapply {
   margin: 1.5em 0 0 0;
