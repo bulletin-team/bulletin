@@ -85,6 +85,7 @@
   display: flex;
   clear: both;
   cursor: default;
+  max-width: 75%;
 }
 .chlist li.chfailed {
   color: #777777;
