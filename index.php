@@ -41,7 +41,7 @@ require('inc/common.php');
               </div>
               <div class="bubble mbubble">
                 <p class="bubblehead">Low Commitment</p>
-                <p>Bulletin features one-time jobs, like mowing lawns and raking leaves. There's no need to commit to a continuing responsibility. Apply to ads when you have some free time!</p>
+                <p>Bulletin features one-time jobs, like mowing lawns and raking leaves. There's no need to shoulder a long-term commitment. Apply to ads when you have some free time!</p>
               </div>
               <div class="bubble rbubble">
                 <p class="bubblehead">It&apos;s Free</p>
@@ -60,8 +60,8 @@ require('inc/common.php');
                 <p>Post an ad and review your student applicants. Find the worker that's right for you, to help you get the job done.</p>
               </div>
               <div class="bubble mbubble">
-                <p class="bubblehead">Good for Community</p>
-                <p>At Bulletin our mission is to help high school and college students get their first workforce exposure. Our service makes it as easy as possible for you to assist us in that effort.</p> 
+                <p class="bubblehead">Community Building</p>
+                <p>At Bulletin our mission is to help high school and college students get workforce exerience. Our service makes it as easy as possible for you to assist us in that effort.</p> 
               </div>
               <div class="bubble rbubble">
                 <p class="bubblehead">Save Money</p>
