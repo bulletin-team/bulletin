@@ -39,7 +39,7 @@ function address_join ($addr) {
 }
 function validate_address ($addr) {
   $patterns = array(
-    '/^\d+\s(\w+\s)+\w+$/',
+    '/^\d+\s(\w+\s)+\w+\.?$/',
     '/^.*$/',
     '/^.+$/',
     '/^[A-Z]{2}$/',
