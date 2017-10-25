@@ -24,6 +24,9 @@
   border: 1px solid #dddddd;
   border-radius: 5px;
 }
+#profile #inpstate, #profile #inpzip {
+  width: 109.5px;
+}
 #profile input[type=submit], #profile input[type=button], #profile button {
   background-color: #fb4d00;
   padding: 5px 10px 3px;
