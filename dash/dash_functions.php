@@ -45,7 +45,7 @@ function validate_address ($addr) {
     '/^[A-Z]{2}$/',
   );
   foreach ($addr as $k => $addrpt) {
-    if (!preg_match($patterns[$k], $addrpt)) die($addrpt);
+    if (!preg_match($patterns[$k], $addrpt)) return false;
   }
   return true;
 }
