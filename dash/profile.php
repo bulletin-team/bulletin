@@ -57,7 +57,7 @@ while ($row = $result->fetch_assoc()) {
           <div class="review">
             <div class="reviewleft">
               <p class="revname"><a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
-              <p class="revpic"><img src="uimg/<?=is_null($row['picture']) ? 'default.png' : intval($row['picture']).'.png';?>" alt="Profile Picture" /></p>
+              <p class="revpic"><img src="<?=picture_format($row['picture']);?>" alt="Profile Picture" /></p>
               <p class="revjob">Based on <a href="ads.php?id=<?=$row['adid'];?>"><?=htmlentities($row['title']);?></a></p>
             </div>
             <div class="reviewright">
@@ -97,11 +97,13 @@ $result->free();
     ), 'changed.tpl')) or dash_fatal('We couldn\'t send mail to your new email address, so your profile has not been updated.');
   }
   if (!empty($_FILES['picture']['tmp_name'])) {
-    $usepropic = ', picture = id';
+    $picstr = genpicstr();
+    $usepropic = ', picture = \''.$db->escape_string($picstr).'\'';
     $tmpfile = $_FILES['picture']['tmp_name'];
     if (getimagesize($tmpfile) === false) dash_fatal('Your uploaded file is not an image.');
     @$img = imagecreatefromstring(file_get_contents($tmpfile));
-    @imagepng($img, 'uimg/'.$b_user['id'].'.png');
+    @imagepng($img, $picstr) or dash_fatal('Your new profile picture could not be saved to the server.');
+    @unlink($b_user['picture']);
     @imagedestroy($img);
   }
   $db->query('UPDATE users SET email = \''.$db->escape_string($_POST['email']).'\', zipcode = \''.$db->escape_string($_POST['zip']).'\', phone = \''.$db->escape_string($_POST['phone']).'\', address = '.$addr.', bio = '.$bio.$usepropic.$deactivate.' WHERE id = '.$b_user['id']) or dash_fatal($db->error);
@@ -121,12 +123,7 @@ $result->free();
           <div id="proleft">
             <h4>Profile Picture</h4>
             <div id="propic">
-<?php
-  if (is_null($user['picture']))
-    echo '              <img src="uimg/default.png" alt="Profile Picture" />'.PHP_EOL;
-  else
-    echo '              <img src="uimg/'.$user['picture'].'.png" alt="Profile Picture" />'.PHP_EOL;
-?>
+              <img src="<?=picture_format($user['picture']);?>" alt="Profile Picture" />
               <p id="hoverupload">Upload New</p>
             </div>
             <p class="hidden"><input id="chpic" type="file" name="picture" type="image/*" value="Upload New" /></p>
