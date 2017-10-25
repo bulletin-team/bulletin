@@ -39,7 +39,7 @@ $phonelink = '+'.preg_replace('/[^0-9]/', '', $user['phone']);
             <p>Phone: <a href="tel:<?=$phonelink;?>"><?=htmlentities($user['phone']);?></a></p>
             <br />
             <h4>Address</h4>
-            <p><?=(is_null($user['address']) ? '<em>No address specified.</em>' : htmlentities($user['address']));?></p>
+            <p><?=address_format($user['address']);?></p>
             <p>Zipcode: <?=htmlentities($user['zipcode']);?></p>
             <br />
             <h4>Chat</h4>
@@ -74,10 +74,24 @@ $result->free();
 <?php
 } else if (!empty($_POST['chprofile'])) {
   $bio = empty($_POST['bio']) ? 'NULL' : '\''.$db->escape_string($_POST['bio']).'\'';
-  if (!empty($_POST['address'])) {
-    if (!geolocate($_POST['address'], $b_user['zipcode'])) dash_fatal('The address provided is not valid.');
+  // Address validation
+  $addr = array_map(trim, array(
+    $_POST['address1'],
+    $_POST['address2'],
+    $_POST['addrcity'],
+    $_POST['addrstate'],
+  ));
+  $addrfull = array_reduce($addr, function ($carry, $item) {
+    return $carry || !empty($item);
+  }, false);
+  if ($addrfull) {
+    if (validate_address($addr))
+      $addr_q = '\''.$db->escape_string(address_join($addr)).'\'';
+    else
+      dash_fatal('The address you supplied appears to be incomplete or invalid.');
+  } else {
+    $addr_q = 'NULL';
   }
-  $addr = empty($_POST['address']) ? 'NULL' : '\''.$db->escape_string($_POST['address']).'\'';
   $patterns = array(
     'email' => '/^.+@.+\..+$/',
     'zip' => '/^\d{5}([-\s]\d{4})?$/',
@@ -106,7 +120,7 @@ $result->free();
     @unlink($b_user['picture']);
     @imagedestroy($img);
   }
-  $db->query('UPDATE users SET email = \''.$db->escape_string($_POST['email']).'\', zipcode = \''.$db->escape_string($_POST['zip']).'\', phone = \''.$db->escape_string($_POST['phone']).'\', address = '.$addr.', bio = '.$bio.$usepropic.$deactivate.' WHERE id = '.$b_user['id']) or dash_fatal($db->error);
+  $db->query('UPDATE users SET email = \''.$db->escape_string($_POST['email']).'\', zipcode = \''.$db->escape_string($_POST['zip']).'\', phone = \''.$db->escape_string($_POST['phone']).'\', address = '.$addr_q.', bio = '.$bio.$usepropic.$deactivate.' WHERE id = '.$b_user['id']) or dash_fatal($db->error);
   dash_fatal('Your profile has been updated. If you have changed your email, you will need to verify it before returning to Bulletin.', $b_config['base_url'].'dash/profile.php');
 } else {
 ?>
@@ -142,8 +156,16 @@ $result->free();
               <h4>Basic Information</h4>
               <p><input id="inpemail" name="email" type="text" value="<?=htmlentities($user['email']);?>" placeholder="Email" /></p>
               <p><input id="inpphone" name="phone" type="text" value="<?=htmlentities($user['phone']);?>" placeholder="1 (555) 481-4475" /></p>
-              <p><input id="inpzip" name="zip" type="text" value="<?=htmlentities($user['zipcode']);?>" placeholder="Zipcode" /></p>
-              <p><input id="inpaddr" name="address" type="text" value="<?=htmlentities($user['address']);?>" placeholder="Address" /></p>
+<?php
+  $addr = address_split($user['address']);
+?>
+              <p><input id="inpaddr1" name="address1" type="text" value="<?=htmlentities($addr[0]);?>" placeholder="Address Line 1" /></p>
+              <p><input id="inpaddr2" name="address2" type="text" value="<?=htmlentities($addr[1]);?>" placeholder="Address Line 2" /></p>
+              <p><input id="inpcity" name="addrcity" type="text" value="<?=htmlentities($addr[2]);?>" placeholder="City" /></p>
+              <p>
+                <input id="inpstate" name="addrstate" type="text" value="<?=htmlentities($addr[3]);?>" placeholder="State" size="5" maxlength="2" />
+                <input id="inpzip" name="zip" type="text" value="<?=htmlentities($user['zipcode']);?>" placeholder="Zipcode" />
+              </p>
               <p><input id="inpchprof" name="chprofile" type="submit" value="Update Profile" /></p>
             </div>
           </div>

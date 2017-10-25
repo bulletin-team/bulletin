@@ -26,6 +26,29 @@ function genpicstr () {
 function picture_format ($picstr = null) {
   return is_null($picstr) ? 'uimg/default.png' : htmlentities($picstr);
 } 
+function address_format ($addrstr) {
+  if (is_null($addrstr)) return '<em>No address supplied.</em>';
+  $addr = array_filter(address_split($addrstr));
+  return htmlentities(implode(', ', $addr));
+}
+function address_split ($addrstr) {
+  return array_map(trim, explode(';', $addrstr));
+}
+function address_join ($addr) {
+  return implode(';', array_map(trim, $addr));
+}
+function validate_address ($addr) {
+  $patterns = array(
+    '/^\d+\s(\w+\s)+\w+$/',
+    '/^.*$/',
+    '/^.+$/',
+    '/^[A-Z]{2}$/',
+  );
+  foreach ($addr as $k => $addrpt) {
+    if (!preg_match($patterns[$k], $addrpt)) die($addrpt);
+  }
+  return true;
+}
 function draw_norate_p () {
 ?>
       <div class="job">
@@ -113,7 +136,7 @@ function draw_app ($row) {
         <a href="#" class="appcbtn" data-rid="<?=$row['id'];?>"></a>
         <p class="jobtitle"><a href="profile.php?id=<?=$row['uid'];?>"><?=htmlentities($row['name']);?></a></p>
         <p class="jobstars"><?=rating_format($row['rating'], 'Employee');?></p>
-        <p class="joblocation"><?=is_null($row['address']) ? '<em>No address listed.</em>' : htmlentities($row['address']);?></p>
+        <p class="joblocation"><?=address_format($row['address']);?></p>
         <p class="jobblurb"><?=is_null($row['comment']) ? '<em>No comment included.</em>' : htmlentities($row['comment']);?></p>
         </p>
       </div>
