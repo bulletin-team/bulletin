@@ -53,7 +53,7 @@ if (!empty($_POST['signup'])) {
   bulletin_mail($_POST['email'], 'Activate Your Bulletin Account', eml_tpl(array(
     'activation_vars' => 'uid='.$uid.'&key='.$sess,
   ))) or fatal('We didn\'t manage to send out your activation email. Please try again later.');
-  fatal('An activation email has been sent to the address you supplied. To access your account, click the \'Activate Account\' link when you receive the email.', $b_config['base_url'].'login.php');
+  fatal('An activation email will be sent shortly. To access your account, click the \'Activate Account\' link when you receive the email.', $b_config['base_url'].'login.php');
 }
 
 #### THIS IS FOR GOTO, IT'S GROSS BUT DON'T REMOVE IT ####
