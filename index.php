@@ -37,15 +37,15 @@ require('inc/common.php');
             <div class="nowrap">
               <div class="bubble lbubble">
                 <p class="bubblehead">Earn Some Money</p>
-                <p>Bulletin is for high school and college students, providing quick job opportunities. Bulletin lets you keep 100% of your profits so you can start making money in no time!</p>
+                <p>Bulletin is for high school and college students, looking to make some money in their spare time. There are no fees for our service, so you keep 100% of your profits.</p>
               </div>
               <div class="bubble mbubble">
                 <p class="bubblehead">Low Commitment</p>
-                <p>Bulletin features one-time jobs, like mowing lawns or raking leaves, so there's no need to commit to a full or part-time job. Apply to ads when you have some free time!</p>
+                <p>Bulletin features one-time jobs, like mowing lawns and raking leaves. There's no need to commit to a continuing responsibility. Apply to ads when you have some free time!</p>
               </div>
               <div class="bubble rbubble">
                 <p class="bubblehead">It&apos;s Free</p>
-                <p>Create an account for free and start applying to jobs in minutes!</p>
+                <p>Create an account for free and start applying to jobs in minutes. You’ll be making money in no time!</p>
               </div>
             </div>
             <a href="/signup.php?t=0">
@@ -56,15 +56,16 @@ require('inc/common.php');
             <h2>For Household CEOs</h2>
             <div class="nowrap">
               <div class="bubble lbubble">
-                <p class="bubblehead">Need Some Help?</p>
-                <p>Post an ad and review your student applicants. Find the worker that's right for you to help you get some work done.</p>
+                <p class="bubblehead">Get Jobs Done</p>
+                <p>Post an ad and review your student applicants. Find the worker that's right for you, to help you get the job done.</p>
               </div>
               <div class="bubble mbubble">
-                <p class="bubbleflash">FREE</p>
+                <p class="bubblehead">Good for Community</p>
+                <p>At Bulletin our mission is to help high school and college students get their first workforce exposure. Our service makes it as easy as possible for you to assist us in that effort.</p> 
               </div>
               <div class="bubble rbubble">
-                <p class="bubblehead">Save Some Money</p>
-                <p>We connect you with student workers as an alternative to expensive professionals for unskilled tasks. It&apos;s free to post an ad and we leave it up to you to pay the worker.</p>
+                <p class="bubblehead">Save Money</p>
+                <p>We connect you with student workers as an alternative to expensive professionals for unskilled tasks. Bulletin is completely free and we leave it up to you to pay the worker.</p>
               </div>
             </div>
             <a href="/signup.php?t=1">
