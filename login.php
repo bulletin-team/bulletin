@@ -12,6 +12,7 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
   $db->query("UPDATE users SET session = '".bulletin_hash($token)."' WHERE id = ".intval($row["id"])) or fatal($db->error);
   if ($db->affected_rows < 1) fatal("Could not sync with database.");
   $db->close();
+
   setcookie($b_config['c_name'], intval($row["id"]).';'.$token, empty($_POST['remember']) ? 0 : (time()+$b_config['c_expire']), $b_config['c_path'], $b_config['c_dom'], $b_config['c_sec'], $b_config['c_http']);
   loggedin();
 } else {
