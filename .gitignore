@@ -6,6 +6,8 @@
 # sensitive config file
 # contains database passwords and site-specific options
 inc/config.php
+# contains github hook secret
+hook.php
 
 # profile picture uploads
 !dash/uimg/default.png
