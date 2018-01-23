@@ -59,11 +59,12 @@ function draw_norate_p () {
 <?php
 }
 function draw_norate_s () {
+  global $b_config;
 ?>
       <div class="job">
         <p class="jobtitle"><a href="post.php">You have no jobs yet!</a></p>
         <p class="jobpay">Apply to more ads. It's FREE!</p>
-        <p class="jobblurb">None of your applications have been approved yet. In the meantime, be sure to reply to more job postings to maximize your exposure.<br /><a href="dash/">Browse ads!</a></p>
+        <p class="jobblurb">None of your applications have been approved yet. In the meantime, be sure to reply to more job postings to maximize your exposure.<br /><a href="<?=$b_config['base_url'];?>dash/">Browse ads!</a></p>
       </div>
 <?php
 }
