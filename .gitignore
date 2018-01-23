@@ -3,6 +3,11 @@
 .*.swp
 *~
 
+# server log files
+error_log
+**/error_log
+*.log
+
 # sensitive config file
 # contains database passwords and site-specific options
 inc/config.php
