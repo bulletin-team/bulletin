@@ -2,6 +2,7 @@
 require('inc/common.php');
 
 if ($b_user['id'] > 0) loggedin();
+
 if (!empty($_POST['email'])) {
   $db = new bdb() or fatal('No database connection!');
   $token = uniqid('fp', true);
