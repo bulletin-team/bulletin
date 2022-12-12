@@ -25,6 +25,10 @@ if (!empty($_POST['signup'])) {
     $e = 100;
     goto err;
   }
+  if (!empty($b_config['recaptcha_api_key']) && !recaptcha_verify($_POST['g-recaptcha-response'])) {
+    $e = 102;
+    goto err;
+  }
   $db = new bdb();
 
   $area = (intval($_POST['phone1'])>0)?intval($_POST['phone1']):intval(substr($_POST['phone1'], 1, -1));
@@ -62,6 +66,7 @@ err:
 if ($e > 0 && $e < 100) $e_msg = 'The fields indicated are not valid.';
 else if ($e == 100) $e_msg = 'The passwords do not match.';
 else if ($e == 101) $e_msg = 'A user with your email or phone number already exists.';
+else if ($e == 102) $e_msg = 'Your CAPTCHA solution was not valid.';
 else $e_msg = 'An unknown error has occurred.';
 ?>
 <!DOCTYPE html>
@@ -139,14 +144,17 @@ if ($e == 2 || $e == 101)
         </div>
 <?php
   if (!empty($b_config['recaptcha_api_key'])) {
+    if ($e == 102)
+      echo '        <div class="fullrow err">'.PHP_EOL;
+    else
+      echo '        <div class="fullrow">'.PHP_EOL;
 ?>
-        <div class="fullrow">
           <div class="g-recaptcha" data-sitekey="<?=$b_config['recaptcha_api_key']; ?>"></div>
         </div>
 <?php
   }
 ?>
-        <div class="fullrow text-center">
+        <div class="fullrow">
           <input type="submit" name="signup" value="Sign Up" />
         </div>
       </form>

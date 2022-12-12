@@ -104,4 +104,28 @@ function pwgen ($len) {
     $pass .= $alpha[mt_rand(0, $alen-1)];
   return $pass;
 }
+
+function recaptcha_verify ($response) {
+  global $b_config;
+
+  $endpoint = 'https://google.com/recaptcha/api/siteverify';
+  $data = json_encode(array(
+    'secret' => $b_config['recaptcha_api_secret'],
+    'response' => $response,
+  ));
+  $ctx = stream_context_create(array(
+    'http' => array(
+      'method' => 'POST',
+      'header' => 'Content-Type: application/json' . "\r\n"
+                . 'Content-Length: ' . strlen($data) . "\r\n",
+      'content' => $data
+    )
+  ));
+  $result = file_get_contents($endpoint, false, $ctx);
+  if (!$result) return false;
+  $result = json_decode($result);
+  if (!$result) return false;
+  return isset($result['success']) && isset($result['hostname']) &&
+         $result['success'] && $result['hostname'] == $_SERVER['HTTP_HOST'];
+}
 ?>
