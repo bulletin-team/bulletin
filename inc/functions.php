@@ -109,14 +109,14 @@ function recaptcha_verify ($response) {
   global $b_config;
 
   $endpoint = 'https://google.com/recaptcha/api/siteverify';
-  $data = json_encode(array(
+  $data = http_build_query(array(
     'secret' => $b_config['recaptcha_api_secret'],
     'response' => $response,
   ));
   $ctx = stream_context_create(array(
     'http' => array(
       'method' => 'POST',
-      'header' => 'Content-Type: application/json' . "\r\n"
+      'header' => 'Content-Type: application/x-www-form-urlencoded' . "\r\n"
                 . 'Content-Length: ' . strlen($data) . "\r\n",
       'content' => $data
     )
@@ -125,7 +125,7 @@ function recaptcha_verify ($response) {
   if (!$result) return false;
   $result = json_decode($result);
   if (!$result) return false;
-  return isset($result['success']) && isset($result['hostname']) &&
-         $result['success'] && $result['hostname'] == $_SERVER['HTTP_HOST'];
+  return isset($result->success) && isset($result->hostname) &&
+         $result->success && $result->hostname == $_SERVER['HTTP_HOST'];
 }
 ?>
