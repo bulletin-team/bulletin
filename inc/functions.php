@@ -91,7 +91,7 @@ function bulletin_mail ($to, $subject, $body) {
   //$headers = 'To: ' . $to . "\r\n";
   $headers = 'From: ' . $b_config['mail_from'] . "\r\n";
   $headers .= 'MIME-Version: 1.0' . "\r\n";
-  $headers .= 'Content-type: text/html; charset=utf-8'
+  $headers .= 'Content-type: text/html; charset=utf-8';
   return mail($to, $subject, $body, $headers);
 }
 
