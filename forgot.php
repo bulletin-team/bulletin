@@ -54,23 +54,19 @@ if (!empty($_POST['email'])) {
           <input id="inpusername" type="text" name="email" placeholder="Email address" />
         </div>
 <?php
-      if ($e == 2)
-        echo '        <div class="fullrow">' . PHP_EOL;
-      else
-        echo '        <div class="fullrow err">' . PHP_EOL;
-?>
-          <div class="halfrowl">
-<?php
       if (!empty($b_config['recaptcha_api_key'])) {
+        if ($e == 2)
+          echo '        <div class="fullrow">' . PHP_EOL;
+        else
+          echo '        <div class="fullrow err">' . PHP_EOL;
 ?>
-            <div class="g-recaptcha" data-sitekey="<?=$b_config['recaptcha_api_key']; ?>"></div>
+          <div class="g-recaptcha" data-sitekey="<?=$b_config['recaptcha_api_key']; ?>"></div>
+        </div>
 <?php
       }
 ?>
-          </div>
-          <div class="halfrowr">
-            <input type="submit" name="recover" value="Recover" />
-          </div>
+        <div class="fullrow text-center">
+          <input type="submit" name="recover" value="Recover" />
         </div>
       </form>
 <?php

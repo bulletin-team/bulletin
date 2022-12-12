@@ -27,6 +27,9 @@ body {
   display: table;
   width: 450px;
 }
+.text-center {
+  text-align: center;
+}
 .fullrow, .helper {
   margin: 15px -15px 15px -15px;
   width: 100%;
