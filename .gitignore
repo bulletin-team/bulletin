@@ -13,6 +13,8 @@ error_log
 inc/config.php
 # contains github hook secret
 hook.php
+# ignore database dump so you can delete it after setup
+database.sql
 
 # profile picture uploads
 !dash/uimg/default.png
