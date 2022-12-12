@@ -35,5 +35,8 @@ $b_config = array(
   'mg_key' => '',
   'mg_dom' => '',
 
+  // ReCAPTCHA config
+  'recaptcha_api_key' => '',
+  'recaptcha_api_secret' => '',
 );
 ?>

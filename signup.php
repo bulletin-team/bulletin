@@ -71,6 +71,7 @@ else $e_msg = 'An unknown error has occurred.';
     <title>Sign Up / Bulletin</title>
     <link rel="stylesheet" type="text/css" href="css/logsup.css" />
     <link rel="stylesheet" type="text/css" href="css/chat.css" />
+    <script type="text/javascript" src="https://google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
     <div id="head">
@@ -136,6 +137,15 @@ if ($e == 2 || $e == 101)
           <input size="3" id="inpphone2" name="phone2" type="text" value="<?=htmlentities($_POST['phone2']); ?>" placeholder="224" />
           <input size="4" id="inpphone3" name="phone3" type="text" value="<?=htmlentities($_POST['phone3']); ?>" placeholder="6821" />
         </div>
+<?php
+  if (!empty($b_config['recaptcha_api_key'])) {
+?>
+        <div class="fullrow">
+          <div class="g-recaptcha" data-sitekey="<?=$b_config['recaptcha_api_key']; ?>"></div>
+        </div>
+<?php
+  }
+?>
         <div class="fullrow">
           <div class="halfrowl">&nbsp;</div>
           <div class="halfrowr">
