@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS `notif`;
 CREATE TABLE `notif` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `uid` int(255) NOT NULL,
-  `icon` enum('HIRED','APPLIED','','') DEFAULT NULL,
+  `icon` enum('HIRED','APPLIED') DEFAULT NULL,
   `text` text NOT NULL,
   `link` text NOT NULL,
   `seen` tinyint(1) NOT NULL DEFAULT '0',
