@@ -146,11 +146,8 @@ if ($e == 2 || $e == 101)
 <?php
   }
 ?>
-        <div class="fullrow">
-          <div class="halfrowl">&nbsp;</div>
-          <div class="halfrowr">
-            <input type="submit" name="signup" value="Sign Up" />
-          </div>
+        <div class="fullrow text-center">
+          <input type="submit" name="signup" value="Sign Up" />
         </div>
       </form>
 <?php
