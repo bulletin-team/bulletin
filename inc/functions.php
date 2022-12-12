@@ -75,17 +75,24 @@ function bulletin_hash ($str, $salt = '') {
 function bulletin_mail ($to, $subject, $body) {
   global $b_config;
 
-  try {
-    $mg = new Mailgun\Mailgun($b_config['mg_key']);
-    return $mg->sendMessage($b_config['mg_dom'], array(
-      'from' => $b_config['mail_from'],
-      'to' => $to,
-      'subject' => $subject,
-      'html' => $body,
-    ));
-  } catch (Exception $e) {
-    return 0;
+  if (isset($b_config['mg_key'])) {
+    try {
+      $mg = new Mailgun\Mailgun($b_config['mg_key']);
+      return $mg->sendMessage($b_config['mg_dom'], array(
+        'from' => $b_config['mail_from'],
+        'to' => $to,
+        'subject' => $subject,
+        'html' => $body,
+      ));
+    } catch (Exception $e) {
+      return 0;
+    }
   }
+  //$headers = 'To: ' . $to . "\r\n";
+  $headers = 'From: ' . $b_config['mail_from'] . "\r\n";
+  $headers .= 'MIME-Version: 1.0' . "\r\n";
+  $headers .= 'Content-type: text/html; charset=utf-8'
+  return mail($to, $subject, $body, $headers);
 }
 
 function pwgen ($len) {
