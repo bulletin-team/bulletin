@@ -36,7 +36,7 @@
   cursor: pointer;
 }
 #profile input[type=submit]:hover, #profile input[type=button]:hover, #profile button:hover {
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.75);
 }
 #profile textarea {
   margin: 0.25em auto;

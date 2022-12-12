@@ -25,7 +25,7 @@
   cursor: pointer;
 }
 #postform input[type=submit]:hover, #postform input[type=button]:hover, #postform button:hover {
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.75);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.75);
 }
 #postform textarea {
   margin: 0.25em auto;
