@@ -17,6 +17,15 @@ $b_config = array(
   'db_name' => '',
   'db_user' => '',
   'db_pass' => '',
+  // One of these two is necessary for SSL
+  'db_ssl_ca' => null,
+  // 'db_ssl_ca_dir' => '/etc/ssl/certs',
+  // These are necessary for SSL
+  'db_ssl_cert' => null,
+  'db_ssl_key' => null,
+  // These are optional for SSL
+  'db_ssl_verify_server' => true,
+  'db_ssl_cipher_algos' => null, 
 
   // Send emails from this address
   'mail_from' => 'Bulletin <noreply@bulletinalpha.tk>',
