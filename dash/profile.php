@@ -75,7 +75,7 @@ $result->free();
 } else if (!empty($_POST['chprofile'])) {
   $bio = empty($_POST['bio']) ? 'NULL' : '\''.$db->escape_string($_POST['bio']).'\'';
   // Address validation
-  $addr = array_map(trim, array(
+  $addr = array_map('trim', array(
     $_POST['address1'],
     $_POST['address2'],
     $_POST['addrcity'],

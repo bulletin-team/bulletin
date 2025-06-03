@@ -32,10 +32,10 @@ function address_format ($addrstr) {
   return htmlentities(implode(', ', $addr));
 }
 function address_split ($addrstr) {
-  return array_map(trim, explode(';', $addrstr));
+  return array_map('trim', explode(';', $addrstr));
 }
 function address_join ($addr) {
-  return implode(';', array_map(trim, $addr));
+  return implode(';', array_map('trim', $addr));
 }
 function validate_address ($addr) {
   $patterns = array(
